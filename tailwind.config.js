@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
@@ -18,9 +19,9 @@ module.exports = {
         "brand-light-blue": "#4C8DFF",
         "brand-light-purple": "#C07BFF",
         "brand-light-pink": "#FF74C6",
-        
+
       },
-       
+
       backgroundSize: {
         "200": "200% 200%",
       },

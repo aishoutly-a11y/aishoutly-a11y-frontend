@@ -1,76 +1,72 @@
-import React from "react";
-import type { Metadata } from "next";
-import Calendar from "@/components/calendar/Calendar";
+"use client";
 
-export const metadata: Metadata = {
-    title: "Content Calendar | Shoutly AI",
-    description: "View and manage your scheduled social media posts.",
-};
+import React from "react";
+import Calendar from "@/components/calendar/Calendar";
+import { PlusIcon } from "@/icons";
 
 export default function ContentCalendar() {
     return (
-        <div className="p-6 font-outfit">
-            <div className="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="p-10 font-outfit max-w-[1400px] mx-auto">
+            <div className="mb-12 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Content Calendar</h1>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">View and manage all your scheduled posts across platforms.</p>
+                    <h1 className="text-4xl font-black text-gray-900 dark:text-white tracking-tight mb-2">Content Calendar</h1>
+                    <p className="text-gray-500 dark:text-gray-400 font-medium text-lg">Manage and schedule your brand&apos;s digital presence.</p>
                 </div>
-                <div className="flex gap-2">
-                    <button className="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 transition">
-                        Filter
+                <div className="flex gap-4">
+                    <button className="h-14 px-8 border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-black rounded-2xl text-sm transition-all hover:bg-gray-100">Batch View</button>
+                    <button className="h-14 px-8 bg-black text-white font-black rounded-2xl text-sm shadow-xl shadow-black/10 flex items-center gap-2 hover:bg-gray-800 transition-all">
+                        <PlusIcon className="w-5 h-5" />
+                        Schedule New
                     </button>
-                    <button className="px-4 py-2 text-sm font-semibold rounded-lg bg-brand-600 text-white hover:bg-brand-700 transition shadow-lg shadow-brand-600/20">
-                        + Schedule Post
-                    </button>
                 </div>
             </div>
 
-            {/* Platform Filters */}
-            <div className="mb-6 flex gap-3">
-                <button className="px-4 py-2 rounded-lg bg-brand-600 text-white text-sm font-medium shadow-sm">
-                    All Platforms
-                </button>
-                <button className="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                    Instagram
-                </button>
-                <button className="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                    LinkedIn
-                </button>
-                <button className="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                    Twitter/X
-                </button>
-            </div>
-
-            {/* Calendar Component */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
-                <Calendar />
-            </div>
-
-            {/* Upcoming Posts Preview */}
-            <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                <div className="border-b border-gray-100 px-6 py-4 dark:border-gray-700">
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Upcoming This Week</h3>
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
+                {/* Calendar Main View */}
+                <div className="xl:col-span-2">
+                    <div className="bg-white dark:bg-gray-800 rounded-[40px] p-8 border border-gray-100 dark:border-gray-700 shadow-sm relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500/5 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
+                        <div className="relative z-10">
+                            <Calendar />
+                        </div>
+                    </div>
                 </div>
-                <div className="p-6">
-                    <div className="flex flex-col gap-4">
-                        {[
-                            { title: "New Product Launch Teaser", date: "Today, 2:00 PM", platform: "Instagram", color: "bg-pink-500" },
-                            { title: "Industry Insights Article", date: "Tomorrow, 10:00 AM", platform: "LinkedIn", color: "bg-blue-600" },
-                            { title: "Customer Success Story", date: "Jan 20, 3:00 PM", platform: "Twitter/X", color: "bg-black dark:bg-white" },
-                        ].map((post, i) => (
-                            <div key={i} className="flex items-center justify-between rounded-xl border border-gray-100 bg-gray-50 p-4 dark:bg-gray-900 dark:border-gray-700">
-                                <div className="flex items-center gap-4">
-                                    <div className={`h-16 w-16 rounded-lg ${post.color} object-cover`}></div>
-                                    <div>
-                                        <p className="font-medium text-gray-900 dark:text-white">{post.title}</p>
-                                        <p className="text-sm text-gray-500 dark:text-gray-400">{post.date}</p>
+
+                {/* Sidebar / Upcoming */}
+                <div className="space-y-8">
+                    <div className="bg-brand-50 dark:bg-brand-900/10 border border-brand-100 dark:border-brand-900/20 p-8 rounded-[40px]">
+                        <h3 className="text-xl font-black text-brand-900 dark:text-brand-400 mb-2 tracking-tight">Post Analytics</h3>
+                        <p className="text-brand-700 dark:text-gray-400 text-sm font-medium mb-6">You have 12 posts scheduled for this week. Great consistency!</p>
+                        <div className="w-full bg-gray-200 dark:bg-gray-800 h-2 rounded-full overflow-hidden">
+                            <div className="bg-brand-500 h-full w-[65%]" />
+                        </div>
+                    </div>
+
+                    <div className="bg-white dark:bg-gray-800 rounded-[40px] p-8 border border-gray-100 dark:border-gray-700 shadow-sm">
+                        <h3 className="text-xl font-black text-gray-900 dark:text-white mb-8 tracking-tight">Queue Today</h3>
+                        <div className="space-y-6">
+                            {[
+                                { title: "Morning Brew Promo", time: "09:00 AM", platform: "Instagram", color: "bg-[#ee2a7b]" },
+                                { title: "Modern Interior Reels", time: "02:30 PM", platform: "TikTok", color: "bg-black" },
+                                { title: "Tech Vision Update", time: "06:00 PM", platform: "LinkedIn", color: "bg-[#0a66c2]" },
+                            ].map((post, i) => (
+                                <div key={i} className="flex items-center gap-4 group cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 p-2 -m-2 rounded-2xl transition-all">
+                                    <div className={`w-14 h-14 rounded-2xl ${post.color} flex items-center justify-center text-white font-black text-xs shadow-lg`}>
+                                        {post.platform.charAt(0)}
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="font-bold text-gray-900 dark:text-white text-sm">{post.title}</p>
+                                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">{post.platform} • {post.time}</p>
+                                    </div>
+                                    <div className="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                                        <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
                                     </div>
                                 </div>
-                                <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                                    {post.platform}
-                                </span>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
+                        <button className="w-full mt-10 py-4 border-2 border-dashed border-gray-100 dark:border-gray-700 rounded-2xl text-xs font-black text-gray-400 uppercase tracking-widest hover:border-brand-500 hover:text-brand-500 transition-all">
+                            View Full Queue
+                        </button>
                     </div>
                 </div>
             </div>

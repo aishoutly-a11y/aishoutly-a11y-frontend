@@ -1,16 +1,13 @@
 "use client";
 
-import Checkbox from "@/components/form/input/Checkbox";
-import Input from "@/components/form/input/InputField";
-import Label from "@/components/form/Label";
-import Button from "@/components/ui/button/Button";
-import { EyeCloseIcon, EyeIcon } from "@/icons";
-import Link from "next/link";
 import React, { useState } from "react";
+import Link from "next/link";
+import { EyeCloseIcon, EyeIcon } from "@/icons";
+import ShoutlyLogo from "../common/ShoutlyLogo";
+import AuthBackground from "./AuthBackground";
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -34,7 +31,6 @@ export default function SignInForm() {
       return;
     }
 
-    // Simulate login
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       window.location.href = "/dashboard";
@@ -45,130 +41,116 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 font-outfit dark:bg-gray-950">
-      <div className="w-full max-w-md">
+    <div className="relative min-h-screen flex items-center justify-center p-6 sm:p-10 overflow-hidden">
+      <AuthBackground />
+
+      <div className="w-full max-w-[480px] z-10">
         {/* Logo */}
         <div className="flex justify-center mb-10">
           <Link href="/">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg shadow-brand-600/20">S</div>
-              <span className="text-2xl font-bold text-gray-900 dark:text-white">Shoutly</span>
-            </div>
+            <ShoutlyLogo />
           </Link>
         </div>
 
-        <div className="rounded-2xl bg-white p-8 shadow-xl dark:bg-gray-900/50 dark:border dark:border-gray-800">
-
-          {/* Header */}
-          <h1 className="text-center text-2xl font-bold text-gray-900 dark:text-white">
+        {/* Main Card */}
+        <div className="bg-white rounded-[32px] p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100">
+          <h1 className="text-center text-3xl font-bold text-gray-900 mb-2">
             Welcome Back
           </h1>
-          <p className="mt-2 text-center text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-center text-gray-500 mb-10">
             Sign in to continue to your dashboard
           </p>
 
-          {error && (
-            <div className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-500 dark:bg-red-900/20 dark:text-red-400">
-              {error}
-            </div>
-          )}
-
-          {/* Google Button */}
-          <button className="mt-6 flex w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 transition-colors">
-            <svg width="20" height="20" viewBox="0 0 20 20">
-              <path
-                d="M18.7511 10.1944C18.7511 9.47495 18.6915 8.94995 18.5626 8.40552H10.1797V11.6527H15.1003C15.0011 12.4597 14.4654 13.675 13.2749 14.4916L15.9087 16.6126C17.7788 15.1041 18.7511 12.8583 18.7511 10.1944Z"
-                fill="#4285F4"
-              />
-              <path
-                d="M10.1788 18.75C12.5895 18.75 14.6133 17.9722 16.0915 16.6305L13.274 14.4916C12.5201 15.0068 11.5081 15.3666 10.1788 15.3666C7.81773 15.3666 5.81379 13.8402 5.09944 11.7305L2.20264 13.9277C3.67087 16.786 6.68674 18.75 10.1788 18.75Z"
-                fill="#34A853"
-              />
-              <path
-                d="M5.10014 11.7305C4.91165 11.186 4.80257 10.6027 4.80257 9.99992C4.80257 9.3971 4.91165 8.81379 5.09022 8.26935L2.20333 6.0721C1.5982 7.25823 1.25098 8.5902 1.25098 9.99992C1.25098 11.4096 1.5982 12.7415 2.20333 13.9277L5.10014 11.7305Z"
-                fill="#FBBC05"
-              />
-              <path
-                d="M10.1789 4.63331C11.8554 4.63331 12.9864 5.34303 13.6312 5.93612L16.1511 3.525C14.6035 2.11528 12.5895 1.25 10.1789 1.25C6.68676 1.25 3.67088 3.21387 2.20264 6.07218L5.08953 8.26943C5.81381 6.15972 7.81776 4.63331 10.1789 4.63331Z"
-                fill="#EB4335"
-              />
+          {/* Google Login */}
+          <button className="w-full flex items-center justify-center gap-3 py-4 border border-gray-200 rounded-2xl text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-all mb-8 shadow-sm">
+            <svg width="24" height="24" viewBox="0 0 24 24" className="w-6 h-6">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.16H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.84l3.66-2.75z" fill="#FBBC05" />
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.16l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" fill="#EA4335" />
             </svg>
             Sign in with Google
           </button>
 
-          {/* Divider */}
-          <div className="my-6 flex items-center">
-            <div className="flex-1 border-t border-gray-200 dark:border-gray-700" />
-            <span className="mx-4 text-xs font-medium text-gray-400 uppercase">Or, sign in with email</span>
-            <div className="flex-1 border-t border-gray-200 dark:border-gray-700" />
+          <div className="relative mb-8 text-center">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-100"></div>
+            </div>
+            <span className="relative px-4 bg-white text-xs font-semibold text-gray-400 uppercase tracking-widest">
+              Or sign in with email
+            </span>
           </div>
 
-          {/* Form */}
-          <form className="space-y-5" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <Label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</Label>
-              <Input
-                type="email"
-                name="email"
-                placeholder="you@company.com"
-                value={formData.email}
-                onChange={handleChange}
-                className="dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-              />
+              <label className="block text-sm font-bold text-gray-700 mb-2.5 ml-1">
+                Email Address
+              </label>
+              <div className="relative">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="you@company.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full h-14 bg-gray-50 border border-transparent rounded-2xl px-5 text-gray-900 text-sm focus:bg-white focus:border-brand-500 transition-all outline-none"
+                />
+              </div>
             </div>
 
             <div>
-              <Label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Password</Label>
+              <label className="block text-sm font-bold text-gray-700 mb-2.5 ml-1">
+                Password
+              </label>
               <div className="relative">
-                <Input
+                <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  placeholder="••••••••"
+                  placeholder="********"
                   value={formData.password}
                   onChange={handleChange}
-                  className="dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                  className="w-full h-14 bg-gray-50 border border-transparent rounded-2xl px-5 text-gray-900 text-sm focus:bg-white focus:border-brand-500 transition-all outline-none"
                 />
-                <span
+                <button
+                  type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                  className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   {showPassword ? <EyeIcon /> : <EyeCloseIcon />}
-                </span>
+                </button>
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2">
-                <Checkbox checked={isChecked} onChange={setIsChecked} />
-                <span className="text-gray-600 dark:text-gray-400">Remember me</span>
-              </div>
-              <Link href="/forgot-password" title="Forgot password?" className="text-brand-600 hover:underline dark:text-brand-400">
+            <div className="flex items-center justify-between px-1">
+              <label className="flex items-center gap-2 cursor-pointer group">
+                <input type="checkbox" className="w-5 h-5 rounded-lg border-gray-200 text-black focus:ring-black/5" />
+                <span className="text-sm text-gray-500 font-medium group-hover:text-gray-900 transition-colors">Remember me</span>
+              </label>
+              <Link href="/forgot-password" title="Forgot password?" className="text-sm font-bold text-gray-900 hover:text-brand-600 transition-colors">
                 Forgot password?
               </Link>
             </div>
 
-            <div className="pt-2">
-              <Button
-                disabled={loading}
-                className="w-full bg-brand-600 hover:bg-brand-700 text-white rounded-xl py-3 font-semibold shadow-lg shadow-brand-600/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                {loading ? "Signing In..." : "Sign In"}
-              </Button>
-            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full h-14 bg-black text-white rounded-2xl font-bold text-base hover:bg-gray-800 transition-all shadow-lg shadow-black/10 disabled:opacity-70 mt-4"
+            >
+              {loading ? "Signing In..." : "Sign In"}
+            </button>
           </form>
 
-          {/* Footer */}
-          <p className="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-10 text-center text-sm font-medium text-gray-500">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="font-semibold text-brand-600 hover:underline dark:text-brand-400">
-              Sign up for free
+            <Link href="/signup" className="text-gray-900 font-bold hover:text-brand-600 transition-colors">
+              Sign up
             </Link>
           </p>
         </div>
 
-        <div className="mt-8 text-center">
-          <Link href="/" className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors dark:text-gray-400 dark:hover:text-white">
-            ← Back to home
+        <div className="mt-10 text-center">
+          <Link href="/" className="text-sm font-bold text-gray-400 hover:text-gray-900 transition-colors">
+            Back to home
           </Link>
         </div>
       </div>

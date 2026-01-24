@@ -1,24 +1,19 @@
 "use client";
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSidebar } from "../context/SidebarContext";
+import ShoutlyLogo from "../components/common/ShoutlyLogo";
 import {
-  BoxCubeIcon,
   CalenderIcon,
   ChevronDownIcon,
   GridIcon,
-  HorizontaLDots,
   ListIcon,
-  Logo,
-  PageIcon,
   PieChartIcon,
-  PlugInIcon,
-  TableIcon,
   UserCircleIcon,
+  BoxCubeIcon,
+  PlugInIcon
 } from "../icons/index";
-import SidebarWidget from "./SidebarWidget";
 
 type NavItem = {
   name: string;
@@ -29,53 +24,45 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    icon: <GridIcon />,
+    icon: <GridIcon className="w-5 h-5" />,
     name: "Dashboard",
     path: "/dashboard",
   },
   {
-    icon: <CalenderIcon />,
+    icon: <PlugInIcon className="w-5 h-5" />,
     name: "Generate Content",
     path: "/generate-content",
   },
   {
-    icon: <UserCircleIcon />,
+    icon: <CalenderIcon className="w-5 h-5" />,
     name: "Content Calendar",
     path: "/calendar",
   },
   {
-    icon: <UserCircleIcon />,
+    icon: <BoxCubeIcon className="w-5 h-5" />,
     name: "Image & Reel Library",
     path: "/library",
   },
   {
-    icon: <UserCircleIcon />,
+    icon: <UserCircleIcon className="w-5 h-5" />,
     name: "Brand Settings",
     path: "/brand-settings",
   },
   {
-    icon: <UserCircleIcon />,
+    icon: <PieChartIcon className="w-5 h-5" />,
     name: "Social Accounts",
     path: "/social-accounts",
   },
   {
-    icon: <UserCircleIcon />,
+    icon: <ListIcon className="w-5 h-5" />,
     name: "Subscription & Billing",
     path: "/billing",
   },
   {
-    icon: <UserCircleIcon />,
+    icon: <UserCircleIcon className="w-5 h-5" />,
     name: "Settings",
     path: "/settings",
   },
-  // {
-  //   name: "Pages",
-  //   icon: <PageIcon />,
-  //   subItems: [
-  //     { name: "Blank Page", path: "/blank", pro: false },
-  //     { name: "404 Error", path: "/error-404", pro: false },
-  //   ],
-  // },
 ];
 
 const AppSidebar: React.FC = () => {
@@ -97,7 +84,6 @@ const AppSidebar: React.FC = () => {
   };
 
   useEffect(() => {
-    // Open submenu if a subItem path matches current pathname
     let matchedIndex: number | null = null;
     navItems.forEach((nav, index) => {
       if (nav.subItems) {
@@ -110,9 +96,17 @@ const AppSidebar: React.FC = () => {
     });
 
     if (matchedIndex !== null) {
-      setOpenSubmenu((prev) => (prev?.index === matchedIndex ? prev : { index: matchedIndex as number })); // eslint-disable-line
+      const targetIndex = matchedIndex;
+      setTimeout(() => {
+        setOpenSubmenu((prev) => {
+          if (prev?.index === targetIndex) return prev;
+          return { index: targetIndex as number };
+        });
+      }, 0);
     } else {
-      setOpenSubmenu((prev) => (prev === null ? prev : null));
+      setTimeout(() => {
+        setOpenSubmenu((prev) => (prev === null ? null : null));
+      }, 0);
     }
   }, [pathname, isActive]);
 
@@ -129,26 +123,25 @@ const AppSidebar: React.FC = () => {
   }, [openSubmenu]);
 
   const renderMenuItems = (items: NavItem[]) => (
-    <ul className="flex flex-col gap-4">
+    <ul className="flex flex-col gap-2">
       {items.map((nav, index) => (
         <li key={nav.name}>
           {nav.subItems ? (
             <button
               onClick={() => handleSubmenuToggle(index)}
-              className={`flex items-center w-full px-3 py-2 rounded-md transition-colors duration-200 cursor-pointer
+              className={`flex items-center w-full px-4 py-3 rounded-xl transition-all duration-200 cursor-pointer text-sm font-medium
                 ${openSubmenu?.index === index
-                  ? "bg-gray-200 text-gray-900"
-                  : "hover:bg-gray-100 text-gray-700"
+                  ? "bg-gray-100 text-gray-900"
+                  : "hover:bg-gray-50 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-white/5"
                 }`}
             >
-              <span className="mr-3">{nav.icon}</span>
+              <span className={`mr-3 ${openSubmenu?.index === index ? "text-brand-500" : ""}`}>{nav.icon}</span>
               {(isExpanded || isHovered || isMobileOpen) && (
                 <span className="flex-1 text-left">{nav.name}</span>
               )}
               {(isExpanded || isHovered || isMobileOpen) && (
                 <ChevronDownIcon
-                  className={`w-5 h-5 ml-auto transition-transform duration-200 ${openSubmenu?.index === index ? "rotate-180" : ""
-                    }`}
+                  className={`w-4 h-4 ml-auto transition-transform duration-200 ${openSubmenu?.index === index ? "rotate-180" : ""}`}
                 />
               )}
             </button>
@@ -156,46 +149,18 @@ const AppSidebar: React.FC = () => {
             nav.path && (
               <Link
                 href={nav.path}
-                className={`flex items-center w-full px-3 py-2 rounded-md transition-colors duration-200
+                className={`flex items-center w-full px-4 py-3 rounded-xl transition-all duration-300 text-sm font-medium
                   ${isActive(nav.path)
-                    ? "bg-black text-white"
-                    : "hover:bg-gray-100 text-gray-700"
+                    ? "bg-black text-white shadow-lg shadow-black/10"
+                    : "hover:bg-gray-50 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-white/5"
                   }`}
               >
-                <span className="mr-3">{nav.icon}</span>
+                <span className={`mr-3 ${isActive(nav.path) ? "text-white" : ""}`}>{nav.icon}</span>
                 {(isExpanded || isHovered || isMobileOpen) && (
                   <span className="flex-1 text-left">{nav.name}</span>
                 )}
               </Link>
             )
-          )}
-          {nav.subItems && (isExpanded || isHovered || isMobileOpen) && (
-            <div
-              ref={(el) => { subMenuRefs.current[`main-${index}`] = el; }}
-              className="overflow-hidden transition-all duration-300"
-              style={{
-                height:
-                  openSubmenu?.index === index
-                    ? `${subMenuHeight[`main-${index}`]}px`
-                    : "0px",
-              }}
-            >
-              <ul className="mt-2 space-y-1 ml-9">
-                {nav.subItems.map((subItem) => (
-                  <li key={subItem.name}>
-                    <Link
-                      href={subItem.path}
-                      className={`block px-2 py-1 rounded-md transition-colors duration-200 ${isActive(subItem.path)
-                        ? "bg-gray-200 text-gray-900"
-                        : "hover:bg-gray-100 text-gray-700"
-                        }`}
-                    >
-                      {subItem.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
           )}
         </li>
       ))}
@@ -204,37 +169,39 @@ const AppSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
-        ${isExpanded || isMobileOpen ? "w-[290px]" : isHovered ? "w-[290px]" : "w-[90px]"}
+      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-4 left-0 bg-white dark:bg-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-100 dark:border-gray-800
+        ${isExpanded || isMobileOpen ? "w-[280px]" : isHovered ? "w-[280px]" : "w-[88px]"}
         ${isMobileOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
       onMouseEnter={() => !isExpanded && setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div
-        className={`py-8 flex ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
-          }`}
-      >
+      <div className={`py-10 flex ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start px-4"}`}>
         <Link href="/">
-          {isExpanded || isHovered || isMobileOpen ? (
-            <>
-              <Logo />
-            </>
-          ) : (
-            <Image
-              src="/images/logo/logo-icon.svg"
-              alt="Logo"
-              width={32}
-              height={32}
-            />
-          )}
+          <ShoutlyLogo iconOnly={!isExpanded && !isHovered && !isMobileOpen} />
         </Link>
       </div>
-      <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
-        <nav className="mb-6">
 
+      <div className="flex flex-col overflow-y-auto no-scrollbar flex-1 px-2">
+        <nav className="mb-6">
           {renderMenuItems(navItems)}
         </nav>
       </div>
+
+      {(isExpanded || isHovered || isMobileOpen) && (
+        <div className="p-4 mb-8">
+          <div className="bg-gray-50 dark:bg-white/5 rounded-2xl p-4 border border-gray-100 dark:border-gray-800">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Plan Details</span>
+              <span className="bg-brand-500 text-[10px] font-bold text-white px-2 py-0.5 rounded-full uppercase">Pro</span>
+            </div>
+            <p className="text-sm font-bold text-gray-900 dark:text-white mb-1">Growth Plan</p>
+            <div className="w-full bg-gray-200 dark:bg-gray-700 h-1.5 rounded-full overflow-hidden mt-3">
+              <div className="bg-brand-500 h-full w-[85%]"></div>
+            </div>
+            <p className="text-[10px] text-gray-500 mt-2">850 / 1000 AI Credits Used</p>
+          </div>
+        </div>
+      )}
     </aside>
   );
 };

@@ -1,139 +1,120 @@
-import Image from "next/image";
-import Link from "next/link";
+import LandingHero from "@/components/public/LandingHero";
+import IndustrySection from "@/components/public/IndustrySection";
+import PricingSection from "@/components/public/PricingSection";
 import GenerateDemo from "@/components/public/GenerateDemo";
-import { FAQ, Testimonials } from "@/components/public/SocialProof";
+import Link from "next/link";
 
 export default function HomePage() {
     return (
-        <div className="bg-white text-slate-900 font-outfit">
-            {/* HERO */}
-            <section className="pt-24 pb-32 bg-gradient-to-b from-brand-50/50 to-white relative overflow-hidden dark:from-gray-900 dark:to-gray-950">
-                <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-[length:40px_40px] opacity-[0.25] dark:opacity-[0.05]" />
-                <div className="relative mx-auto max-w-5xl text-center px-6 z-10">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-gray-800 px-4 py-1.5 text-xs font-semibold shadow-sm border border-gray-100 dark:border-gray-700 text-brand-600 dark:text-brand-400">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
-                        </span>
-                        AI‑Powered Content Generation
-                    </span>
-                    <h1 className="mt-8 text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-gray-900 dark:text-white">
-                        Generate <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-400 dark:from-brand-400 dark:to-brand-200">365 Days</span> of Content in Minutes.
-                    </h1>
-                    <p className="mt-8 text-xl text-slate-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                        Upload your logo → Enter one prompt → Get a full year of AI‑built marketing assets.
-                    </p>
-                    <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
-                        <Link
-                            href="/signup"
-                            className="inline-flex items-center justify-center rounded-full bg-brand-600 text-white px-8 py-4 text-lg font-semibold hover:bg-brand-700 transition shadow-lg shadow-brand-600/20 hover:shadow-brand-600/30 transform hover:-translate-y-0.5"
-                        >
-                            Start for Free
-                        </Link>
-                        <button className="inline-flex items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 px-8 py-4 text-lg font-medium hover:bg-gray-50 transition dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
-                            <svg className="w-5 h-5 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            Watch Demo
-                        </button>
+        <div className="bg-white text-gray-900 font-outfit">
+            {/* 1. HERO SECTION */}
+            <LandingHero />
+
+            {/* 2. SEE IT IN ACTION / VIDEO SECTION */}
+            <section id="features" className="py-24 bg-white relative overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6 sm:px-10">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">See it in Action</h2>
                     </div>
-                </div>
-            </section>
 
-            {/* SEE IT IN ACTION */}
-            <section className="py-24 bg-white dark:bg-gray-950">
-                <div className="max-w-7xl mx-auto px-6 text-center">
-                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-12">See it in Action</h2>
-
-                    {/* Enhanced Video Player Mockup */}
-                    <div className="relative mt-8 mx-auto max-w-5xl rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800 bg-gray-900 group cursor-pointer">
-                        <div className="aspect-video relative grid place-items-center bg-gray-800">
-                            {/* Mock Screen Content (Abstract UI) */}
-                            <div className="absolute inset-4 bg-gray-900 rounded-lg border border-gray-700 opacity-50 flex flex-col overflow-hidden">
-                                <div className="h-8 bg-gray-800 border-b border-gray-700 flex items-center px-4 gap-2">
-                                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                </div>
-                                <div className="flex-1 p-6 grid grid-cols-3 gap-4">
-                                    <div className="col-span-1 bg-gray-800 rounded h-full animate-pulse"></div>
-                                    <div className="col-span-2 flex flex-col gap-4">
-                                        <div className="h-32 bg-gray-700 rounded w-full"></div>
-                                        <div className="h-4 bg-gray-700 rounded w-3/4"></div>
-                                        <div className="h-4 bg-gray-700 rounded w-1/2"></div>
+                    <div className="relative mx-auto max-w-5xl rounded-[40px] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] border border-gray-100 bg-gray-900 group">
+                        <div className="aspect-video relative bg-slate-800">
+                            {/* Mock video content */}
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-all duration-500">
+                                <div className="w-24 h-24 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 flex items-center justify-center transform group-hover:scale-110 transition-all duration-500">
+                                    <div className="w-16 h-16 rounded-full bg-brand-500 flex items-center justify-center shadow-2xl">
+                                        <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                                     </div>
                                 </div>
-                            </div>
-
-                            {/* Play Button Overlay */}
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition">
-                                <div className="transform group-hover:scale-110 transition duration-300">
-                                    <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-2xl">
-                                        <div className="w-16 h-16 rounded-full bg-brand-600 flex items-center justify-center shadow-lg">
-                                            <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Player Controls Mockup */}
-                            <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/80 to-transparent px-6 flex items-center gap-4 text-white/80">
-                                <svg className="w-5 h-5 cursor-pointer hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                                <div className="h-1 flex-1 bg-white/20 rounded-full overflow-hidden">
-                                    <div className="h-full w-1/3 bg-brand-500 rounded-full"></div>
-                                </div>
-                                <span className="text-xs font-medium">0:42 / 2:15</span>
-                                <svg className="w-5 h-5 cursor-pointer hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
                             </div>
                         </div>
                     </div>
 
-                    <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                    <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8">
                         {[
-                            { label: "2 Minutes Setup", icon: "⏱️" },
-                            { label: "Auto‑Branded", icon: "🎨" },
-                            { label: "365 Days Filled", icon: "📅" },
-                            { label: "Multi‑Platform", icon: "📱" }
-                        ].map((item) => (
-                            <div key={item.label} className="flex flex-col items-center gap-2 rounded-xl border border-gray-100 bg-gray-50 p-6 text-center shadow-sm transition hover:shadow-md dark:bg-gray-900 dark:border-gray-800 hover:border-brand-200 dark:hover:border-brand-900">
-                                <span className="text-3xl">{item.icon}</span>
-                                <span className="text-sm font-semibold text-gray-900 dark:text-white">{item.label}</span>
+                            { title: "2 Minutes Setup", icon: "✨" },
+                            { title: "Auto-Branded", icon: "🎨" },
+                            { title: "365 Days Filled", icon: "📅" },
+                            { title: "Multi-Platform", icon: "🚀" }
+                        ].map(f => (
+                            <div key={f.title} className="bg-gray-50/50 p-8 rounded-[32px] border border-gray-100 text-center hover:bg-white hover:shadow-xl hover:border-white transition-all">
+                                <div className="text-4xl mb-4">{f.icon}</div>
+                                <h4 className="font-black text-gray-900">{f.title}</h4>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* GENERATE YEAR */}
-            <section className="py-24 bg-slate-50 dark:bg-gray-900 border-y border-gray-200 dark:border-gray-800">
+            {/* 3. GENERATE YEAR DEMO */}
+            <section className="py-32 bg-gray-50/30 border-y border-gray-100">
                 <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className="text-brand-600 font-semibold tracking-wider uppercase text-sm mb-2 block">Interactive Demo</span>
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Generate Your Year of Content</h2>
-                        <p className="mt-4 text-xl text-slate-600 dark:text-gray-400">One prompt. 365 days of posts. Infinite possibilities.</p>
+                    <div className="text-center max-w-3xl mx-auto mb-20">
+                        <div className="inline-block px-4 py-1.5 bg-brand-50 rounded-full text-brand-600 text-xs font-black uppercase tracking-widest mb-4">Interactive Demo</div>
+                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">Generate Your Year of Content</h2>
+                        <p className="text-gray-500 text-lg font-medium lg:px-20">One prompt. 365 days of posts. Infinite possibilities for your brand growth.</p>
                     </div>
 
                     <GenerateDemo />
                 </div>
             </section>
 
-            {/* SOCIAL PROOF */}
-            <Testimonials />
+            {/* 4. LIBRARY SHOWCASE */}
+            <section className="py-32 bg-white overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6 sm:px-10">
+                    <div className="text-center mb-20">
+                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">Browse Our Library</h2>
+                        <p className="text-gray-500 text-lg font-medium max-w-2xl mx-auto">Access 10,000+ AI-generated high-quality images and reels template designed to convert.</p>
+                    </div>
 
-            {/* FAQ */}
-            <FAQ />
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+                            <div key={i} className="aspect-[3/4] bg-gray-100 rounded-[32px] overflow-hidden relative group">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
+                                    <button className="w-full py-3 bg-white/90 backdrop-blur text-black font-bold rounded-xl text-sm">Preview</button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
 
-            {/* CTA */}
-            <section className="relative py-24 overflow-hidden bg-brand-900">
-                {/* Decorative circles */}
-                <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500 rounded-full opacity-20 blur-3xl"></div>
-                <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-96 h-96 bg-purple-600 rounded-full opacity-20 blur-3xl"></div>
+                    <div className="mt-16 text-center">
+                        <Link href="/library" className="inline-flex items-center gap-2 text-brand-500 font-black hover:gap-3 transition-all">
+                            Explore full library
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </Link>
+                    </div>
+                </div>
+            </section>
 
-                <div className="relative max-w-4xl mx-auto px-6 text-center text-white z-10">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Ready to automate your social media?</h2>
-                    <p className="text-xl text-brand-100 mb-10 max-w-2xl mx-auto leading-relaxed">Join thousands of creators and businesses saving hours every week with Shoutly AI.</p>
-                    <Link href="/signup" className="inline-block rounded-full bg-white text-brand-600 px-10 py-4 text-lg font-bold hover:bg-gray-100 transition shadow-2xl hover:scale-105 duration-200">
-                        Get Started Now
-                    </Link>
-                    <p className="mt-6 text-sm text-brand-200 opacity-80">No credit card required · 14-day free trial</p>
+            {/* 5. INDUSTRY SECTION */}
+            <IndustrySection />
+
+            {/* 6. PRICING SECTION */}
+            <PricingSection />
+
+            {/* 7. PRE-FOOTER CTA */}
+            <section className="py-24 bg-gray-50/50">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="bg-black rounded-[50px] p-12 lg:p-24 relative overflow-hidden text-center text-white">
+                        {/* Decorative background */}
+                        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,_var(--tw-gradient-stops))] from-brand-600/20 via-transparent to-transparent opacity-50" />
+                        <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_80%,_var(--tw-gradient-stops))] from-purple-600/20 via-transparent to-transparent opacity-50" />
+
+                        <div className="relative z-10">
+                            <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight leading-[1]">Ready to automate your <br className="hidden md:block" /> social media success?</h2>
+                            <p className="text-gray-400 text-lg md:text-xl font-medium mb-12 max-w-2xl mx-auto ring-offset-slate-50">Join thousands of creators and businesses saving 20+ hours every week with AI-powered automation.</p>
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                                <Link
+                                    href="/signup"
+                                    className="w-full sm:w-auto bg-white text-black px-12 py-5 rounded-[22px] font-black text-lg hover:bg-gray-100 transition-all hover:scale-[1.02]"
+                                >
+                                    Get Started for Free
+                                </Link>
+                                <div className="text-sm font-bold text-gray-500">14-day trial · No credit card required</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

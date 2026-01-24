@@ -1,100 +1,53 @@
-import type { Metadata } from "next";
 import React from "react";
-
-export const metadata: Metadata = {
-    title: "Dashboard | Shoutly AI",
-    description: "Overview of your social media performance and AI content generation.",
-};
+import DashboardGrid from "@/components/dashboard/DashboardGrid";
 
 export default function Dashboard() {
     return (
-        <div className="p-6 font-outfit">
-            <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div className="p-10 font-outfit max-w-[1600px] mx-auto">
+            <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                        Dashboard
+                    <h1 className="text-4xl font-black text-gray-900 dark:text-white tracking-tight mb-2">
+                        Welcome back, Shovon! 👋
                     </h1>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Welcome back! Here&apos;s what&apos;s happening with your brand.
+                    <p className="text-gray-500 dark:text-gray-400 font-medium">
+                        Here&apos;s what&apos;s happening with your brand today.
                     </p>
                 </div>
-                <button className="inline-flex items-center justify-center rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition duration-200 hover:bg-brand-700">
-                    + New Post
+                <button className="inline-flex items-center gap-2 justify-center rounded-2xl bg-black px-8 py-4 text-sm font-bold text-white shadow-xl shadow-black/10 transition-all hover:bg-gray-800 hover:-translate-y-0.5">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    New Content
                 </button>
             </div>
 
-            {/* Metrics Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                    <div className="flex items-center gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 dark:bg-purple-900/20 dark:text-purple-400">
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
-                        </div>
-                        <div>
-                            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Posts</p>
-                            <h4 className="text-2xl font-bold text-gray-900 dark:text-white">1,248</h4>
-                        </div>
+            {/* Quick Summary / Plan Info */}
+            <div className="mb-12 bg-brand-50 dark:bg-brand-900/10 border border-brand-100 dark:border-brand-900/20 p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-3 mb-2">
+                        <span className="bg-brand-500 text-[10px] font-black text-white px-3 py-1 rounded-full uppercase tracking-widest">Growth Plan</span>
+                        <span className="text-brand-600 dark:text-brand-400 text-sm font-bold">Expires in 12 days</span>
+                    </div>
+                    <p className="text-brand-900 dark:text-white font-bold leading-relaxed max-w-md">
+                        You&apos;ve used <span className="font-black text-brand-600 dark:text-brand-400">85%</span> of your monthly credits.
+                        Upgrade to Pro for unlimited content generation.
+                    </p>
+                </div>
+                <div className="w-full md:w-64">
+                    <div className="w-full bg-gray-200 dark:bg-gray-800 h-2.5 rounded-full overflow-hidden mb-3">
+                        <div className="bg-brand-500 h-full w-[85%] rounded-full shadow-[0_0_10px_rgba(251,107,31,0.5)]"></div>
+                    </div>
+                    <div className="flex justify-between text-[11px] font-black text-gray-400 uppercase tracking-widest">
+                        <span>850 Used</span>
+                        <span>1000 Total</span>
                     </div>
                 </div>
-                <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                    <div className="flex items-center gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                        </div>
-                        <div>
-                            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Impressions</p>
-                            <h4 className="text-2xl font-bold text-gray-900 dark:text-white">84.2K</h4>
-                        </div>
-                    </div>
-                </div>
-                <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                    <div className="flex items-center gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-400">
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
-                        </div>
-                        <div>
-                            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Engagement</p>
-                            <h4 className="text-2xl font-bold text-gray-900 dark:text-white">5.8%</h4>
-                        </div>
-                    </div>
-                </div>
-                <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                    <div className="flex items-center gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400">
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        </div>
-                        <div>
-                            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Scheduled</p>
-                            <h4 className="text-2xl font-bold text-gray-900 dark:text-white">12</h4>
-                        </div>
-                    </div>
-                </div>
+                <button className="bg-white text-black px-8 py-3.5 rounded-2xl text-sm font-black shadow-sm border border-gray-100 hover:bg-gray-50 transition-all">
+                    Upgrade Plan
+                </button>
             </div>
 
-            {/* Upcoming Posts Section */}
-            <div className="rounded-2xl border border-gray-100 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                <div className="border-b border-gray-100 px-6 py-4 dark:border-gray-700">
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Upcoming Posts</h3>
-                </div>
-                <div className="p-6">
-                    <div className="flex flex-col gap-4">
-                        {[1, 2, 3].map((post, i) => (
-                            <div key={i} className="flex items-center justify-between rounded-xl border border-gray-100 bg-gray-50 p-4 dark:bg-gray-900 dark:border-gray-700">
-                                <div className="flex items-center gap-4">
-                                    <div className="h-16 w-16 rounded-lg bg-gray-200 object-cover dark:bg-gray-800"></div>
-                                    <div>
-                                        <p className="font-medium text-gray-900 dark:text-white">New Product Launch Teaser</p>
-                                        <p className="text-sm text-gray-500 dark:text-gray-400">Scheduled for Today, 2:00 PM</p>
-                                    </div>
-                                </div>
-                                <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                                    Instagram
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
+            <DashboardGrid />
         </div>
     );
 }

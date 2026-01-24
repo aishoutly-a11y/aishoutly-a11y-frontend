@@ -1,69 +1,77 @@
+"use client";
+
+import React from "react";
+import { PaperPlaneIcon } from "@/icons";
+
 export default function ContactPage() {
     return (
-        <div className="bg-white dark:bg-gray-950 font-outfit min-h-screen">
-            <section className="relative py-24 max-w-7xl mx-auto px-6">
-                {/* Background decoration */}
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-50 rounded-full blur-3xl opacity-50 z-0 dark:bg-brand-900/10 pointer-events-none" />
+        <div className="bg-white dark:bg-gray-950 font-outfit min-h-screen relative overflow-hidden">
+            {/* Background Aesthetic */}
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-500/5 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
-                <div className="grid lg:grid-cols-2 gap-16 relative z-10">
-                    {/* Contact Info */}
-                    <div className="flex flex-col justify-center">
-                        <span className="text-brand-600 font-semibold tracking-wider uppercase text-sm mb-4">Contact Us</span>
-                        <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">Let&apos;s start a conversation</h1>
-                        <p className="text-xl text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">
-                            Have questions about Shoutly AI? We&apos;re here to help. Chat with our team or fill out the form below.
+            <section className="relative py-32 max-w-7xl mx-auto px-6 z-10">
+                <div className="grid lg:grid-cols-2 gap-24 items-center">
+                    {/* Content Side */}
+                    <div>
+                        <span className="inline-block py-2 px-6 rounded-full bg-brand-50 text-brand-600 text-[10px] font-black uppercase tracking-[0.2em] mb-8 border border-brand-100">
+                            Contact Us
+                        </span>
+                        <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white mb-8 tracking-tighter leading-[0.95]">
+                            Let&apos;s build<br />
+                            something <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-purple-600 font-black italic">extraordinary.</span>
+                        </h1>
+                        <p className="text-xl text-gray-500 dark:text-gray-400 mb-12 leading-relaxed font-medium max-w-lg">
+                            Have a question or a project idea? Reach out and let&apos;s start a conversation that changes everything.
                         </p>
 
-                        <div className="space-y-8">
-                            <div className="flex items-start gap-6 p-6 rounded-2xl border border-transparent hover:border-gray-100 hover:bg-gray-50 transition duration-300 dark:hover:bg-gray-900 dark:hover:border-gray-800">
-                                <div className="w-14 h-14 rounded-xl bg-brand-100 flex items-center justify-center text-brand-600 dark:bg-brand-900/30 dark:text-brand-400 shrink-0">
-                                    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+                        <div className="space-y-10">
+                            <div className="flex items-center gap-6 group">
+                                <div className="w-16 h-16 rounded-3xl bg-gray-50 dark:bg-gray-900 flex items-center justify-center text-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-xl group-hover:shadow-brand-500/20 border border-gray-100 dark:border-gray-800">
+                                    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">Chat to support</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mt-2">Speak to our friendly team for technical support or general queries.</p>
-                                    <a href="mailto:support@shoutly.ai" className="text-brand-600 font-semibold hover:underline mt-3 inline-block">support@shoutly.ai</a>
+                                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Email Support</p>
+                                    <a href="mailto:hello@shoutly.ai" className="text-xl font-black text-gray-900 dark:text-white hover:text-brand-500 transition-colors">hello@shoutly.ai</a>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-6 p-6 rounded-2xl border border-transparent hover:border-gray-100 hover:bg-gray-50 transition duration-300 dark:hover:bg-gray-900 dark:hover:border-gray-800">
-                                <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 shrink-0">
+                            <div className="flex items-center gap-6 group">
+                                <div className="w-16 h-16 rounded-3xl bg-gray-50 dark:bg-gray-900 flex items-center justify-center text-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-xl group-hover:shadow-brand-500/20 border border-gray-100 dark:border-gray-800">
                                     <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">Visit us</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 mt-2">Visit our office HQ for a coffee.</p>
-                                    <p className="text-gray-900 dark:text-white mt-3 font-medium">100 Smith Street, Melbourne VIC 3000</p>
+                                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Global HQ</p>
+                                    <p className="text-xl font-black text-gray-900 dark:text-white">Melbourne, Australia</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Contact Form */}
-                    <div className="bg-white dark:bg-gray-900 p-8 md:p-10 rounded-3xl border border-gray-100 shadow-xl dark:border-gray-800 relative">
-                        {/* Form decorative blob */}
-                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-yellow-400 rounded-full blur-3xl opacity-10 pointer-events-none"></div>
+                    {/* Form Side */}
+                    <div className="bg-white dark:bg-gray-900 p-12 rounded-[60px] border border-gray-100 dark:border-gray-800 shadow-2xl shadow-black/5 relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-600 to-purple-600" />
 
-                        <form className="space-y-6 relative z-10">
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label htmlFor="first-name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">First name</label>
-                                    <input type="text" id="first-name" className="w-full rounded-xl border-gray-200 bg-gray-50 focus:bg-white transition-all shadow-sm focus:border-brand-500 focus:ring-brand-500 py-3.5 px-4 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:focus:bg-gray-900" placeholder="First name" />
+                        <form className="space-y-8 relative z-10">
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <div className="space-y-2">
+                                    <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">First Name</label>
+                                    <input type="text" className="w-full h-16 bg-gray-50 border border-transparent rounded-2xl px-6 text-gray-900 dark:text-white text-sm focus:bg-white focus:border-brand-500 transition-all outline-none" placeholder="Alex" />
                                 </div>
-                                <div>
-                                    <label htmlFor="last-name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Last name</label>
-                                    <input type="text" id="last-name" className="w-full rounded-xl border-gray-200 bg-gray-50 focus:bg-white transition-all shadow-sm focus:border-brand-500 focus:ring-brand-500 py-3.5 px-4 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:focus:bg-gray-900" placeholder="Last name" />
+                                <div className="space-y-2">
+                                    <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Last Name</label>
+                                    <input type="text" className="w-full h-16 bg-gray-50 border border-transparent rounded-2xl px-6 text-gray-900 dark:text-white text-sm focus:bg-white focus:border-brand-500 transition-all outline-none" placeholder="Morgan" />
                                 </div>
                             </div>
-                            <div>
-                                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
-                                <input type="email" id="email" className="w-full rounded-xl border-gray-200 bg-gray-50 focus:bg-white transition-all shadow-sm focus:border-brand-500 focus:ring-brand-500 py-3.5 px-4 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:focus:bg-gray-900" placeholder="you@company.com" />
+                            <div className="space-y-2">
+                                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Email Address</label>
+                                <input type="email" className="w-full h-16 bg-gray-50 border border-transparent rounded-2xl px-6 text-gray-900 dark:text-white text-sm focus:bg-white focus:border-brand-500 transition-all outline-none" placeholder="alex@creators.com" />
                             </div>
-                            <div>
-                                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Message</label>
-                                <textarea id="message" rows={4} className="w-full rounded-xl border-gray-200 bg-gray-50 focus:bg-white transition-all shadow-sm focus:border-brand-500 focus:ring-brand-500 py-3.5 px-4 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:focus:bg-gray-900 resize-none" placeholder="How can we help you?"></textarea>
+                            <div className="space-y-2">
+                                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Message</label>
+                                <textarea className="w-full h-40 bg-gray-50 border border-transparent rounded-[32px] p-6 text-sm text-gray-900 dark:text-white focus:bg-white focus:border-brand-500 transition-all outline-none resize-none" placeholder="How can we help your brand grow?" />
                             </div>
-                            <button type="submit" className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-lg shadow-brand-600/20 transform hover:-translate-y-0.5 mt-2">
+                            <button className="w-full h-16 bg-black text-white rounded-2xl font-black text-lg flex items-center justify-center gap-3 hover:bg-gray-800 transition-all shadow-2xl shadow-black/10 hover:-translate-y-0.5 mt-4">
+                                <PaperPlaneIcon className="w-6 h-6" />
                                 Send Message
                             </button>
                         </form>
