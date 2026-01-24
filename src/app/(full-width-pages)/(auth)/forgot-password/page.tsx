@@ -25,7 +25,8 @@ export default function ForgotPassword() {
         // Simulate sending reset link
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            setSuccess(true);
+            // Redirect to verification instead of showing success message inline
+            window.location.href = "/verify-email?type=reset";
         } catch (err) {
             setError("Something went wrong. Please try again.");
             setLoading(false);
@@ -82,6 +83,15 @@ export default function ForgotPassword() {
 
                             <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
                                 <div>
+                                    <Label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</Label>
+                                    <Input
+                                        type="text"
+                                        placeholder="John Doe"
+                                        className="dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                        required
+                                    />
+                                </div>
+                                <div>
                                     <Label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</Label>
                                     <Input
                                         type="email"
@@ -89,6 +99,7 @@ export default function ForgotPassword() {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                        required
                                     />
                                 </div>
 

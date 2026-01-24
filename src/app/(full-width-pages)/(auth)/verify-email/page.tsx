@@ -7,6 +7,15 @@ import React from "react";
 export default function VerifyEmail() {
     const [otp, setOtp] = React.useState(["", "", "", ""]);
     const [loading, setLoading] = React.useState(false);
+    const [isResetFlow, setIsResetFlow] = React.useState(false);
+
+    React.useEffect(() => {
+        // Simple check for query param in client component
+        if (typeof window !== "undefined") {
+            const params = new URLSearchParams(window.location.search);
+            setIsResetFlow(params.get("type") === "reset");
+        }
+    }, []);
 
     const handleChange = (index: number, value: string) => {
         if (value.length > 1) return;
@@ -33,7 +42,12 @@ export default function VerifyEmail() {
         setLoading(true);
         // Simulate verification
         await new Promise((resolve) => setTimeout(resolve, 1000));
-        window.location.href = "/profile-setup";
+
+        if (isResetFlow) {
+            window.location.href = "/new-password";
+        } else {
+            window.location.href = "/profile-setup";
+        }
     };
 
     return (

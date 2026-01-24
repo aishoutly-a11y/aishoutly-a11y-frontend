@@ -10,6 +10,32 @@ import { EyeCloseIcon, EyeIcon } from "@/icons";
 export default function NewPassword() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+        setLoading(true);
+
+        if (password !== confirmPassword) {
+            setError("Passwords do not match");
+            setLoading(false);
+            return;
+        }
+
+        if (password.length < 8) {
+            setError("Password must be at least 8 characters");
+            setLoading(false);
+            return;
+        }
+
+        // Simulate password reset
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        window.location.href = "/signin";
+    };
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 font-outfit dark:bg-gray-950">
@@ -32,7 +58,13 @@ export default function NewPassword() {
                         Create a new password for your account.
                     </p>
 
-                    <form className="mt-8 space-y-5">
+                    {error && (
+                        <div className="mt-6 rounded-lg bg-red-50 p-3 text-sm text-red-500 dark:bg-red-900/20 dark:text-red-400 text-center">
+                            {error}
+                        </div>
+                    )}
+
+                    <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
                         <div>
                             <Label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">New Password</Label>
                             <div className="relative">
@@ -40,6 +72,9 @@ export default function NewPassword() {
                                     type={showPassword ? "text" : "password"}
                                     placeholder="••••••••"
                                     className="dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
                                 />
                                 <span
                                     onClick={() => setShowPassword(!showPassword)}
@@ -57,6 +92,9 @@ export default function NewPassword() {
                                     type={showConfirmPassword ? "text" : "password"}
                                     placeholder="••••••••"
                                     className="dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    required
                                 />
                                 <span
                                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -67,8 +105,11 @@ export default function NewPassword() {
                             </div>
                         </div>
 
-                        <Button className="w-full bg-brand-600 hover:bg-brand-700 text-white rounded-xl py-3 font-semibold shadow-lg shadow-brand-600/20 transition-all">
-                            Reset Password
+                        <Button
+                            disabled={loading || !password || !confirmPassword}
+                            className="w-full bg-brand-600 hover:bg-brand-700 text-white rounded-xl py-3 font-semibold shadow-lg shadow-brand-600/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                        >
+                            {loading ? "Resetting..." : "Reset Password"}
                         </Button>
                     </form>
                 </div>
