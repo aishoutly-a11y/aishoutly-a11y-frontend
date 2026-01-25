@@ -23,7 +23,7 @@ export default function LandingHero() {
 
                     {/* Headline */}
                     <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-gray-900 tracking-[-0.04em] leading-[1] mb-8">
-                        Generate 365 Days of Content in <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 via-purple-500 to-pink-500">Minutes.</span>
+                        Generate 365 Days of Content in <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-brand-700">Minutes.</span>
                     </h1>
 
                     {/* Subheadline */}
@@ -35,11 +35,11 @@ export default function LandingHero() {
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
                         <Link
                             href="/signup"
-                            className="w-full sm:w-auto bg-black text-white px-10 py-5 rounded-[20px] text-lg font-bold hover:bg-gray-800 transition-all shadow-2xl shadow-black/10 hover:-translate-y-0.5"
+                            className="w-full sm:w-auto bg-black text-white px-10 py-5 rounded-xl text-lg font-bold hover:bg-gray-800 transition-all shadow-2xl shadow-black/10 hover:-translate-y-0.5"
                         >
                             Start for Free
                         </Link>
-                        <button className="w-full sm:w-auto bg-white text-gray-900 border border-gray-100 px-10 py-5 rounded-[20px] text-lg font-bold hover:bg-gray-50 transition-all shadow-sm flex items-center justify-center gap-2">
+                        <button className="w-full sm:w-auto bg-white text-gray-900 border border-gray-100 px-10 py-5 rounded-xl text-lg font-bold hover:bg-gray-50 transition-all shadow-sm flex items-center justify-center gap-2">
                             <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
                                 <svg className="w-3 h-3 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                             </div>

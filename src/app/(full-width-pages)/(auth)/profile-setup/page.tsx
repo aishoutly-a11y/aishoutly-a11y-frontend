@@ -5,8 +5,10 @@ import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ProfileSetup() {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         displayName: "",
         bio: "",
@@ -18,7 +20,7 @@ export default function ProfileSetup() {
         e.preventDefault();
         setLoading(true);
         await new Promise((resolve) => setTimeout(resolve, 800));
-        window.location.href = "/interests";
+        router.push("/interests");
     };
 
     return (
@@ -75,8 +77,8 @@ export default function ProfileSetup() {
                                         type="button"
                                         onClick={() => setFormData({ ...formData, role: role.toLowerCase() })}
                                         className={`py-3 px-4 rounded-xl text-sm font-medium border transition-all ${formData.role === role.toLowerCase()
-                                                ? "bg-brand-50 border-brand-200 text-brand-600 dark:bg-brand-900/20 dark:border-brand-800 dark:text-brand-400"
-                                                : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-750"
+                                            ? "bg-brand-50 border-brand-200 text-brand-600 dark:bg-brand-900/20 dark:border-brand-800 dark:text-brand-400"
+                                            : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-750"
                                             }`}
                                     >
                                         {role}

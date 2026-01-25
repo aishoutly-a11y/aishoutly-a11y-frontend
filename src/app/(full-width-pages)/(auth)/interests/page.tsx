@@ -3,6 +3,7 @@
 import Button from "@/components/ui/button/Button";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const INTERESTS = [
     "Marketing", "Technology", "Design", "Content Creation",
@@ -12,6 +13,7 @@ const INTERESTS = [
 ];
 
 export default function InterestsSelection() {
+    const router = useRouter();
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
 
@@ -27,7 +29,7 @@ export default function InterestsSelection() {
         if (selectedInterests.length < 3) return;
         setLoading(true);
         await new Promise((resolve) => setTimeout(resolve, 800));
-        window.location.href = "/success";
+        router.push("/success");
     };
 
     return (
@@ -95,7 +97,7 @@ export default function InterestsSelection() {
 
                 <div className="mt-8 text-center">
                     <button
-                        onClick={() => window.location.href = "/success"}
+                        onClick={() => router.push("/success")}
                         className="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors"
                     >
                         Skip for now

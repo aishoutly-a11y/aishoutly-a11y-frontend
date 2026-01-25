@@ -12,8 +12,11 @@ import {
   PieChartIcon,
   UserCircleIcon,
   BoxCubeIcon,
-  PlugInIcon
+  PlugInIcon,
+  ShootingStarIcon,
+  DollarLineIcon
 } from "../icons/index";
+
 
 type NavItem = {
   name: string;
@@ -29,7 +32,7 @@ const navItems: NavItem[] = [
     path: "/dashboard",
   },
   {
-    icon: <PlugInIcon className="w-5 h-5" />,
+    icon: <ShootingStarIcon className="w-5 h-5" />,
     name: "Generate Content",
     path: "/generate-content",
   },
@@ -54,7 +57,7 @@ const navItems: NavItem[] = [
     path: "/social-accounts",
   },
   {
-    icon: <ListIcon className="w-5 h-5" />,
+    icon: <DollarLineIcon className="w-5 h-5" />,
     name: "Subscription & Billing",
     path: "/billing",
   },
@@ -64,6 +67,7 @@ const navItems: NavItem[] = [
     path: "/settings",
   },
 ];
+
 
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();

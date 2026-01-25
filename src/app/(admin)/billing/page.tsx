@@ -1,83 +1,170 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 export default function Billing() {
+    const [billingCycle, setBillingCycle] = useState("monthly");
+
     return (
-        <div className="p-10 font-outfit max-w-[1000px]">
-            <div className="mb-12">
-                <h1 className="text-4xl font-black text-gray-900 dark:text-white tracking-tight mb-2">Billing & Subscription</h1>
-                <p className="text-gray-500 dark:text-gray-400 font-medium">Manage your subscription plan, payments, and credit usage.</p>
+        <div className="p-10 font-outfit max-w-[1200px] mx-auto pb-20">
+            <div className="text-center mb-12">
+                <h1 className="text-[32px] font-bold text-gray-900 mb-2">Subscription & Billing</h1>
+                <p className="text-gray-400 font-medium">Manage your plan and payment information</p>
             </div>
 
-            <div className="space-y-10">
-                {/* Active Plan Card */}
-                <div className="bg-white dark:bg-gray-800 rounded-[40px] p-10 border border-gray-100 dark:border-gray-700 shadow-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500/5 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
-
-                    <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 relative z-10">
-                        <div>
-                            <span className="inline-block px-4 py-1.5 bg-brand-500 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-4">Current Plan</span>
-                            <h2 className="text-4xl font-black text-gray-900 dark:text-white mb-2 tracking-tight transition-all">Growth Plan</h2>
-                            <p className="text-gray-400 font-bold">$79.00 billed monthly • Renews on March 12, 2026</p>
+            {/* Current Plan Banner */}
+            <div className="bg-gradient-to-r from-[#A855F7] via-[#D946EF] to-[#EC4899] rounded-[32px] p-10 text-white shadow-xl shadow-pink-500/10 mb-12 relative overflow-hidden group">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 relative z-10">
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <h2 className="text-2xl font-bold">Current Plan: Professional</h2>
                         </div>
-                        <div className="flex gap-4">
-                            <button className="h-14 px-8 border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white font-black rounded-2xl text-sm transition-all hover:bg-gray-100">Cancel</button>
-                            <button className="h-14 px-10 bg-black text-white font-black rounded-2xl text-sm shadow-xl shadow-black/10 transition-all hover:bg-gray-800 hover:-translate-y-0.5">Upgrade Plan</button>
-                        </div>
-                    </div>
+                        <p className="text-white/80 text-sm font-medium mb-8">Your subscription renews on December 15, 2025</p>
 
-                    <div className="mt-12 pt-12 border-t border-gray-50 dark:border-gray-700">
-                        <div className="grid md:grid-cols-3 gap-12">
+                        <div className="flex gap-12">
                             <div>
-                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">AI Credits Used</p>
-                                <div className="mb-4">
-                                    <span className="text-3xl font-black text-gray-900 dark:text-white">850</span>
-                                    <span className="text-gray-400 font-bold ml-2">/ 1000</span>
-                                </div>
-                                <div className="w-full bg-gray-100 dark:bg-gray-700 h-2.5 rounded-full overflow-hidden">
-                                    <div className="bg-brand-500 h-full w-[85%] rounded-full shadow-[0_0_10px_rgba(251,107,31,0.3)]"></div>
-                                </div>
+                                <p className="text-[10px] font-bold text-white/60 uppercase tracking-widest mb-1">Posts this month</p>
+                                <p className="text-2xl font-bold">127</p>
                             </div>
                             <div>
-                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">Posts Generated</p>
-                                <div className="mb-4">
-                                    <span className="text-3xl font-black text-gray-900 dark:text-white">124</span>
-                                    <span className="text-gray-400 font-bold ml-2">Total</span>
-                                </div>
-                                <p className="text-xs text-gray-400 font-bold">+12 since last week</p>
-                            </div>
-                            <div>
-                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">Linked Accounts</p>
-                                <div className="mb-4">
-                                    <span className="text-3xl font-black text-gray-900 dark:text-white">04</span>
-                                    <span className="text-gray-400 font-bold ml-2">/ 10 Slots</span>
-                                </div>
-                                <div className="w-full bg-gray-100 dark:bg-gray-700 h-2.5 rounded-full overflow-hidden text-gray-400">
-                                    <div className="bg-blue-500 h-full w-[40%] rounded-full shadow-[0_0_10px_rgba(59,130,246,0.3)]"></div>
-                                </div>
+                                <p className="text-[10px] font-bold text-white/60 uppercase tracking-widest mb-1">Connected accounts</p>
+                                <p className="text-2xl font-bold">3</p>
                             </div>
                         </div>
                     </div>
+                    <button className="bg-white text-gray-900 px-8 py-3.5 rounded-xl font-bold text-sm hover:bg-gray-50 transition-all shadow-lg">
+                        Manage Billing
+                    </button>
+                </div>
+                {/* Decorative circles */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 animate-pulse"></div>
+            </div>
+
+            {/* Billing Cycle Toggle */}
+            <div className="flex justify-center mb-16">
+                <div className="bg-gray-50 p-1.5 rounded-2xl flex items-center gap-2 border border-gray-100 shadow-sm">
+                    <button
+                        onClick={() => setBillingCycle("monthly")}
+                        className={`px-8 py-2.5 rounded-xl text-xs font-bold transition-all ${billingCycle === "monthly" ? "bg-white text-gray-900 shadow-md" : "text-gray-400 hover:text-gray-600"}`}
+                    >
+                        Monthly
+                    </button>
+                    <button
+                        onClick={() => setBillingCycle("yearly")}
+                        className={`px-8 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${billingCycle === "yearly" ? "bg-white text-gray-900 shadow-md" : "text-gray-400 hover:text-gray-600"}`}
+                    >
+                        Yearly
+                        <span className="text-[8px] bg-green-500 text-white px-1.5 py-0.5 rounded-md">Save 20%</span>
+                    </button>
+                </div>
+            </div>
+
+            {/* Pricing Cards */}
+            <div className="grid md:grid-cols-2 gap-8 mb-20 px-4">
+                <div className="bg-white rounded-[40px] p-10 border border-gray-100 shadow-[0_4px_25px_rgba(0,0,0,0.02)] transition-all hover:scale-[1.02]">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p className="text-gray-400 text-sm font-medium mb-8">For Individuals & Freelancers</p>
+                    <div className="mb-10">
+                        <span className="text-[32px] font-black text-gray-900">₹899</span>
+                        <span className="text-gray-400 font-bold ml-1 text-sm">/month</span>
+                        <p className="text-[10px] text-gray-400 mt-1 font-bold tracking-tight">$11 USD / month</p>
+                    </div>
+                    <button className="w-full py-4 bg-brand-600 text-white rounded-2xl font-bold text-sm mb-10 hover:bg-brand-700 transition-all shadow-lg shadow-brand-500/20">Get Started</button>
+                    <ul className="space-y-4">
+                        {["Images + Reels", "Festival Posts", "Auto Scheduling", "Logo Overlay", "Captions + Hashtags"].map((feature) => (
+                            <li key={feature} className="flex items-center gap-3 text-sm font-medium text-gray-600">
+                                <div className="w-5 h-5 rounded-full bg-green-50 flex items-center justify-center text-green-500 border border-green-100">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                {feature}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
 
-                {/* Payment Methods */}
-                <div className="bg-white dark:bg-gray-800 rounded-[40px] p-10 border border-gray-100 dark:border-gray-700 shadow-sm">
-                    <div className="flex justify-between items-center mb-10">
-                        <h2 className="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Payment Methods</h2>
-                        <button className="text-brand-500 font-black text-sm hover:underline tracking-tight">+ Add New</button>
+                <div className="bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] rounded-[40px] p-10 text-white shadow-2xl shadow-purple-500/20 transition-all hover:scale-[1.02] relative">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-gray-900 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">Most Popular</div>
+                    <h3 className="text-xl font-bold mb-2">Growth</h3>
+                    <p className="text-white/60 text-sm font-medium mb-8">For Small Businesses</p>
+                    <div className="mb-10">
+                        <span className="text-[32px] font-black italic">₹1,499</span>
+                        <span className="text-white/60 font-bold ml-1 text-sm">/month</span>
+                        <p className="text-[10px] text-white/40 mt-1 font-bold tracking-tight">$18 USD / month</p>
                     </div>
+                    <button className="w-full py-4 bg-white text-gray-900 rounded-2xl font-bold text-sm mb-10 hover:bg-gray-100 transition-all shadow-lg">Get Started</button>
+                    <ul className="space-y-4">
+                        {["365 Posts Yearly", "Images Only", "Captions + Hashtags", "Auto Scheduling", "Priority Support", "Advanced Analytics"].map((feature) => (
+                            <li key={feature} className="flex items-center gap-3 text-sm font-medium text-white/90">
+                                <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-white border border-white/30">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                {feature}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
 
-                    <div className="p-8 border border-brand-500 bg-brand-50/10 rounded-[32px] flex items-center justify-between">
-                        <div className="flex items-center gap-6">
-                            <div className="w-16 h-10 bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center font-black text-gray-400 italic text-xs tracking-tighter border border-gray-200 dark:border-gray-600">VISA</div>
-                            <div>
-                                <p className="text-gray-900 dark:text-white font-black text-lg">Ending in 4242</p>
-                                <p className="text-gray-400 text-sm font-bold uppercase tracking-widest">Expires 12/28</p>
-                            </div>
+            {/* Payment Method */}
+            <div className="bg-white rounded-[32px] border border-gray-100 shadow-sm p-10 mb-8">
+                <div className="flex items-center gap-3 mb-8 text-gray-900">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                    <h2 className="text-xl font-bold tracking-tight">Payment Method</h2>
+                </div>
+
+                <div className="bg-gray-50 border border-gray-100 p-6 rounded-2xl flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-6">
+                        <div className="w-14 h-9 bg-gray-900 rounded-lg flex items-center justify-center text-white">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                         </div>
-                        <span className="px-4 py-1 bg-brand-500 text-white rounded-full text-[10px] font-black uppercase tracking-widest">Default</span>
+                        <div>
+                            <p className="text-gray-900 font-bold">•••• •••• •••• 4242</p>
+                            <p className="text-xs text-gray-400 font-medium">Expires 12/2026</p>
+                        </div>
                     </div>
+                    <button className="text-brand-600 text-xs font-bold hover:underline">Update</button>
+                </div>
+                <button className="text-brand-500 text-xs font-bold hover:underline flex items-center gap-2">Add payment method →</button>
+            </div>
+
+            {/* Billing History */}
+            <div className="bg-white rounded-[32px] border border-gray-100 shadow-sm p-10 overflow-hidden">
+                <div className="flex items-center gap-3 mb-8 text-gray-900">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <h2 className="text-xl font-bold tracking-tight">Billing History</h2>
+                </div>
+
+                <div className="space-y-4">
+                    {[
+                        { date: "Dec 1, 2025", id: "INV-001", amount: "$79.00" },
+                        { date: "Nov 1, 2025", id: "INV-002", amount: "$79.00" },
+                        { date: "Oct 1, 2025", id: "INV-003", amount: "$79.00" },
+                    ].map((inv) => (
+                        <div key={inv.id} className="p-6 border border-gray-50 rounded-2xl flex items-center justify-between hover:bg-gray-50/50 transition-all">
+                            <div className="flex items-center gap-12">
+                                <div>
+                                    <p className="text-sm font-bold text-gray-900">{inv.date}</p>
+                                    <p className="text-[10px] text-gray-400 font-bold">{inv.id}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm font-bold text-gray-900">{inv.amount}</p>
+                                    <span className="text-[9px] bg-green-50 text-green-600 px-2 py-0.5 rounded-full font-black uppercase tracking-tighter">Paid</span>
+                                </div>
+                            </div>
+                            <button className="text-brand-600 text-xs font-bold hover:underline">Download</button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Footer */}
+            <div className="mt-20 flex justify-between items-center text-gray-400 px-2">
+                <p className="text-[10px] font-medium">© 2025 ShoutlyAI. All rights reserved.</p>
+                <div className="flex gap-6 text-[10px] font-bold uppercase tracking-widest">
+                    <button className="hover:text-gray-900">Privacy Policy</button>
+                    <button className="hover:text-gray-900">Terms of Service</button>
+                    <button className="hover:text-gray-900">Support</button>
                 </div>
             </div>
         </div>

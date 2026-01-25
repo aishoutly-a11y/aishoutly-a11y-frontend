@@ -12,10 +12,12 @@ import {
 } from "@fullcalendar/core";
 import { useModal } from "@/hooks/useModal";
 import { Modal } from "@/components/ui/modal";
+import { ShootingStarIcon, TimeIcon } from "@/icons";
 
 interface CalendarEvent extends EventInput {
   extendedProps: {
     calendar: string;
+    isAutoScheduled?: boolean;
   };
 }
 
@@ -25,8 +27,11 @@ const Calendar: React.FC = () => {
   );
   const [eventTitle, setEventTitle] = useState("");
   const [eventStartDate, setEventStartDate] = useState("");
+  const [eventStartTime, setEventStartTime] = useState("");
   const [eventEndDate, setEventEndDate] = useState("");
-  const [eventLevel, setEventLevel] = useState("");
+  const [eventLevel, setEventLevel] = useState("Primary");
+  const [isAutoSchedule, setIsAutoSchedule] = useState(false);
+
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const calendarRef = useRef<FullCalendar>(null);
   const { isOpen, openModal, closeModal } = useModal();
@@ -43,30 +48,25 @@ const Calendar: React.FC = () => {
     setEvents([
       {
         id: "1",
-        title: "Event Conf.",
-        start: new Date().toISOString().split("T")[0],
-        extendedProps: { calendar: "Danger" },
+        title: "Morning Brew Promo",
+        start: new Date().toISOString().split("T")[0] + "T09:00:00",
+        extendedProps: { calendar: "Primary", isAutoScheduled: true },
       },
       {
         id: "2",
-        title: "Meeting",
-        start: new Date(Date.now() + 86400000).toISOString().split("T")[0],
-        extendedProps: { calendar: "Success" },
-      },
-      {
-        id: "3",
-        title: "Workshop",
-        start: new Date(Date.now() + 172800000).toISOString().split("T")[0],
-        end: new Date(Date.now() + 259200000).toISOString().split("T")[0],
-        extendedProps: { calendar: "Primary" },
+        title: "Tech Vision Update",
+        start: new Date(Date.now() + 86400000).toISOString().split("T")[0] + "T14:00:00",
+        extendedProps: { calendar: "Success", isAutoScheduled: false },
       },
     ]);
   }, []);
 
   const handleDateSelect = (selectInfo: DateSelectArg) => {
     resetModalFields();
-    setEventStartDate(selectInfo.startStr);
-    setEventEndDate(selectInfo.endStr || selectInfo.startStr);
+    setEventStartDate(selectInfo.startStr.split("T")[0]);
+    // Default time if not provided
+    setEventStartTime("09:00");
+    setEventEndDate(selectInfo.endStr ? selectInfo.endStr.split("T")[0] : selectInfo.startStr.split("T")[0]);
     openModal();
   };
 
@@ -74,13 +74,22 @@ const Calendar: React.FC = () => {
     const event = clickInfo.event;
     setSelectedEvent(event as unknown as CalendarEvent);
     setEventTitle(event.title);
-    setEventStartDate(event.start?.toISOString().split("T")[0] || "");
-    setEventEndDate(event.end?.toISOString().split("T")[0] || "");
+
+    // Parse start date and time
+    const startObj = event.start || new Date();
+    setEventStartDate(startObj.toISOString().split("T")[0]);
+    setEventStartTime(startObj.toTimeString().slice(0, 5));
+
+    setEventEndDate(event.end?.toISOString().split("T")[0] || startObj.toISOString().split("T")[0]);
     setEventLevel(event.extendedProps.calendar);
+    setIsAutoSchedule(event.extendedProps.isAutoScheduled || false);
     openModal();
   };
 
   const handleAddOrUpdateEvent = () => {
+    const start = `${eventStartDate}T${eventStartTime}:00`;
+    const end = eventEndDate ? `${eventEndDate}T${eventStartTime}:00` : undefined;
+
     if (selectedEvent) {
       // Update existing event
       setEvents((prevEvents) =>
@@ -89,9 +98,9 @@ const Calendar: React.FC = () => {
             ? {
               ...event,
               title: eventTitle,
-              start: eventStartDate,
-              end: eventEndDate,
-              extendedProps: { calendar: eventLevel },
+              start: start,
+              end: end,
+              extendedProps: { calendar: eventLevel, isAutoScheduled: isAutoSchedule },
             }
             : event
         )
@@ -102,10 +111,10 @@ const Calendar: React.FC = () => {
         // eslint-disable-next-line
         id: Date.now().toString(),
         title: eventTitle,
-        start: eventStartDate,
-        end: eventEndDate,
-        allDay: true,
-        extendedProps: { calendar: eventLevel },
+        start: start,
+        end: end,
+        allDay: false,
+        extendedProps: { calendar: eventLevel, isAutoScheduled: isAutoSchedule },
       };
       setEvents((prevEvents) => [...prevEvents, newEvent]);
     }
@@ -116,20 +125,22 @@ const Calendar: React.FC = () => {
   const resetModalFields = () => {
     setEventTitle("");
     setEventStartDate("");
+    setEventStartTime("");
     setEventEndDate("");
-    setEventLevel("");
+    setEventLevel("Primary");
+    setIsAutoSchedule(false);
     setSelectedEvent(null);
   };
 
   return (
-    <div className="rounded-2xl border  border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+    <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
       <div className="custom-calendar">
         <FullCalendar
           ref={calendarRef}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
           headerToolbar={{
-            left: "prev,next addEventButton",
+            left: "prev,next today",
             center: "title",
             right: "dayGridMonth,timeGridWeek,timeGridDay",
           }}
@@ -138,127 +149,102 @@ const Calendar: React.FC = () => {
           select={handleDateSelect}
           eventClick={handleEventClick}
           eventContent={renderEventContent}
-          customButtons={{
-            addEventButton: {
-              text: "Add Event +",
-              click: openModal,
-            },
-          }}
+          editable={true}
+          droppable={true}
+          height="800px"
         />
       </div>
       <Modal
         isOpen={isOpen}
         onClose={closeModal}
-        className="max-w-[700px] p-6 lg:p-10"
+        className="max-w-[600px] p-0 overflow-hidden rounded-[32px]"
       >
-        <div className="flex flex-col px-2 overflow-y-auto custom-scrollbar">
-          <div>
-            <h5 className="mb-2 font-semibold text-gray-800 modal-title text-theme-xl dark:text-white/90 lg:text-2xl">
-              {selectedEvent ? "Edit Event" : "Add Event"}
-            </h5>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Plan your next big moment: schedule or edit an event to stay on
-              track
-            </p>
-          </div>
-          <div className="mt-8">
+        <div className="p-8">
+          <div className="flex justify-between items-start mb-6">
             <div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                  Event Title
-                </label>
-                <input
-                  id="event-title"
-                  type="text"
-                  value={eventTitle}
-                  onChange={(e) => setEventTitle(e.target.value)}
-                  className="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                />
-              </div>
+              <h5 className="text-2xl font-black text-gray-900 dark:text-white tracking-tight leading-none mb-2">
+                {selectedEvent ? "Edit Schedule" : "New Schedule"}
+              </h5>
+              <p className="text-sm font-medium text-gray-500">Manage your publication timing</p>
             </div>
-            <div className="mt-6">
-              <label className="block mb-4 text-sm font-medium text-gray-700 dark:text-gray-400">
-                Event Color
-              </label>
-              <div className="flex flex-wrap items-center gap-4 sm:gap-5">
-                {Object.entries(calendarsEvents).map(([key, value]) => (
-                  <div key={key} className="n-chk">
-                    <div
-                      className={`form-check form-check-${value} form-check-inline`}
-                    >
-                      <label
-                        className="flex items-center text-sm text-gray-700 form-check-label dark:text-gray-400"
-                        htmlFor={`modal${key}`}
-                      >
-                        <span className="relative">
-                          <input
-                            className="sr-only form-check-input"
-                            type="radio"
-                            name="event-level"
-                            value={key}
-                            id={`modal${key}`}
-                            checked={eventLevel === key}
-                            onChange={() => setEventLevel(key)}
-                          />
-                          <span className="flex items-center justify-center w-5 h-5 mr-2 border border-gray-300 rounded-full box dark:border-gray-700">
-                            <span
-                              className={`h-2 w-2 rounded-full bg-white ${eventLevel === key ? "block" : "hidden"
-                                }`}
-                            ></span>
-                          </span>
-                        </span>
-                        {key}
-                      </label>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                Enter Start Date
-              </label>
-              <div className="relative">
-                <input
-                  id="event-start-date"
-                  type="date"
-                  value={eventStartDate}
-                  onChange={(e) => setEventStartDate(e.target.value)}
-                  className="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pl-4 pr-11 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                />
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                Enter End Date
-              </label>
-              <div className="relative">
-                <input
-                  id="event-end-date"
-                  type="date"
-                  value={eventEndDate}
-                  onChange={(e) => setEventEndDate(e.target.value)}
-                  className="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pl-4 pr-11 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 mt-6 modal-footer sm:justify-end">
-            <button
-              onClick={closeModal}
-              type="button"
-              className="flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] sm:w-auto"
-            >
-              Close
+            <button onClick={closeModal} className="p-2 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
             </button>
+          </div>
+
+          <div className="space-y-6">
+            <div>
+              <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Post Title</label>
+              <input
+                type="text"
+                value={eventTitle}
+                onChange={(e) => setEventTitle(e.target.value)}
+                placeholder="e.g., Summer Sale Announcement"
+                className="w-full h-12 bg-gray-50 dark:bg-gray-900 border-none rounded-xl px-4 text-sm font-bold text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500 placeholder:font-medium placeholder:text-gray-400"
+              />
+            </div>
+
+            {/* Smart Scheduling Toggle */}
+            <div
+              onClick={() => setIsAutoSchedule(!isAutoSchedule)}
+              className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex items-center justify-between group ${isAutoSchedule ? 'border-brand-500 bg-brand-50/50' : 'border-gray-100 dark:border-gray-700 hover:border-gray-200'}`}
+            >
+              <div className="flex items-center gap-4">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${isAutoSchedule ? 'bg-brand-500 text-white' : 'bg-gray-100 text-gray-400'}`}>
+                  <ShootingStarIcon className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className={`font-bold text-sm ${isAutoSchedule ? 'text-gray-900 dark:text-white' : 'text-gray-500'}`}>Smart Scheduling</p>
+                  <p className="text-xs text-gray-400 font-medium">Auto-pick the best engagement time</p>
+                </div>
+              </div>
+              <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${isAutoSchedule ? 'border-brand-500' : 'border-gray-200'}`}>
+                {isAutoSchedule && <div className="w-3 h-3 bg-brand-500 rounded-full" />}
+              </div>
+            </div>
+
+            {/* Manual Time Selection (shown if not auto) */}
+            <div className={`space-y-4 transition-all duration-300 ${isAutoSchedule ? 'opacity-50 pointer-events-none grayscale' : 'opacity-100'}`}>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Date</label>
+                  <input
+                    type="date"
+                    value={eventStartDate}
+                    onChange={(e) => setEventStartDate(e.target.value)}
+                    className="w-full h-12 bg-gray-50 dark:bg-gray-900 border-none rounded-xl px-4 text-sm font-bold text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Time</label>
+                  <div className="relative">
+                    <input
+                      type="time"
+                      value={eventStartTime}
+                      onChange={(e) => setEventStartTime(e.target.value)}
+                      className="w-full h-12 bg-gray-50 dark:bg-gray-900 border-none rounded-xl px-4 text-sm font-bold text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500"
+                    />
+                    <TimeIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Auto Schedule Message */}
+            {isAutoSchedule && (
+              <div className="p-4 bg-green-50 dark:bg-green-900/10 rounded-xl flex items-center gap-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <p className="text-xs font-bold text-green-700 dark:text-green-400">
+                  AI detected optimum time: Tomorrow at 09:30 AM
+                </p>
+              </div>
+            )}
+
             <button
               onClick={handleAddOrUpdateEvent}
-              type="button"
-              className="btn btn-success btn-update-event flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto"
+              className="w-full h-14 bg-black text-white font-black rounded-2xl text-sm shadow-xl shadow-black/10 hover:bg-gray-800 transition-all hover:-translate-y-0.5"
             >
-              {selectedEvent ? "Update Changes" : "Add Event"}
+              {selectedEvent ? "Save Changes" : "Schedule Post"}
             </button>
           </div>
         </div>
@@ -268,16 +254,17 @@ const Calendar: React.FC = () => {
 };
 
 const renderEventContent = (eventInfo: EventContentArg) => {
-  const colorClass = `fc-bg-${eventInfo.event.extendedProps.calendar.toLowerCase()}`;
+  const isAuto = eventInfo.event.extendedProps.isAutoScheduled;
   return (
-    <div
-      className={`event-fc-color flex fc-event-main ${colorClass} p-1 rounded-sm`}
-    >
-      <div className="fc-daygrid-event-dot"></div>
-      <div className="fc-event-time">{eventInfo.timeText}</div>
-      <div className="fc-event-title">{eventInfo.event.title}</div>
+    <div className={`flex flex-col p-1.5 rounded-lg w-full h-full overflow-hidden ${isAuto ? 'bg-gradient-to-br from-brand-500 to-purple-600 border-0' : 'bg-white border-l-4 border-blue-500 shadow-sm'}`}>
+      <div className="flex items-center gap-1 mb-0.5">
+        {isAuto && <ShootingStarIcon className="w-3 h-3 text-white" />}
+        <span className={`text-[10px] font-bold ${isAuto ? 'text-white' : 'text-gray-500'}`}>{eventInfo.timeText}</span>
+      </div>
+      <div className={`text-xs font-bold truncate leading-tight ${isAuto ? 'text-white' : 'text-gray-900'}`}>{eventInfo.event.title}</div>
     </div>
   );
 };
 
 export default Calendar;
+

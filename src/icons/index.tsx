@@ -57,6 +57,8 @@ import LinkedIn from "./Linkedin.svg";
 import Reels from "./reel.svg";
 import Instagram from "./insta.svg";
 import Logo from "./Logo.svg";
+import Youtube from "./youtube.svg";
+
 
 export {
   Logo,
@@ -117,5 +119,7 @@ export {
   Facebook,
   LinkedIn,
   Reels,
-  Instagram
+  Instagram,
+  Youtube
 };
+
