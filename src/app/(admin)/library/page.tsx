@@ -16,7 +16,7 @@ export default function Library() {
     const [activeTab, setActiveTab] = useState("Reels");
 
     return (
-        <div className="p-8 font-outfit max-w-[1600px] mx-auto min-h-screen pb-20">
+        <div className="p-8 font-arial max-w-[1600px] mx-auto min-h-screen pb-20">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
                 <div>
                     <h1 className="text-[28px] font-bold text-gray-900 mb-1 tracking-tight">Image & Reel Library</h1>

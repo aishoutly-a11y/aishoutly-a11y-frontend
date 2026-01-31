@@ -5,7 +5,7 @@ import { Facebook, Instagram, LinkedIn, Youtube } from "@/icons";
 
 export default function Settings() {
     return (
-        <div className="p-10 font-outfit max-w-[1200px] mx-auto pb-20">
+        <div className="p-10 font-arial max-w-[1200px] mx-auto pb-20">
             <div className="mb-10">
                 <h1 className="text-[32px] font-bold text-gray-900 mb-2">Account Settings</h1>
                 <p className="text-gray-400 font-medium">Manage your profile and connected social accounts</p>

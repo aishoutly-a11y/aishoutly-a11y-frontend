@@ -21,7 +21,7 @@ export default function ConnectAccountsPage() {
     };
 
     return (
-        <div className="w-full bg-white rounded-[40px] p-10 sm:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.03)] border border-gray-100 font-outfit">
+        <div className="w-full bg-white rounded-[40px] p-10 sm:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.03)] border border-gray-100 font-arial">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Connect Your Social Accounts</h2>
             <p className="text-gray-400 text-sm mb-10">Select platforms where you want to auto-schedule posts</p>
 

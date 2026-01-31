@@ -1,31 +1,42 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import React from "react";
 import Link from "next/link";
+
 import { useRef, useState } from "react";
 import IndustrySection from "@/components/public/IndustrySection";
 import PricingSection from "@/components/public/PricingSection";
 import { CheckCircleIcon, ArrowRightIcon, ShootingStarIcon, BoltIcon } from "@/icons";
+import {
+    FaTwitter,
+    FaInstagram,
+    FaLinkedinIn,
+    FaFacebookF,
+    FaYoutube,
+} from "react-icons/fa";
 
 export default function LandingPage() {
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     return (
-        <div className="bg-white dark:bg-gray-950 font-outfit min-h-screen text-gray-900 dark:text-white selection:text-white">
+        <div className="bg-white dark:bg-gray-950 font-arial min-h-screen text-gray-900 dark:text-white selection:text-white">
             {/* Navigation */}
             <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 
                     {/* Logo */}
                     <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white font-semibold">
-                            S
+                        <div className="w-32 h-27 relative">
+                            <Image
+                                src="/images/logo.png"
+                                alt="Shoutly.ai Logo"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
                         </div>
-                        <span className="text-xl font-semibold tracking-tight text-black">
-                            Shoutly<span className="text-black">.ai</span>
-                        </span>
                     </div>
-
                     {/* Navigation Links */}
                     <div className="hidden md:flex items-center gap-8 text-sm font-medium text-black">
                         <Link href="/" className="hover:text-brand-500 transition-colors">
@@ -96,7 +107,8 @@ export default function LandingPage() {
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-                        className="text-5xl md:text-7xl lg:text-6xl font-semibold mb-8 tracking-tight leading-[1.05]"
+                        className="text-5xl md:text-7xl lg:text-6xl font-normal mb-8 tracking-tight leading-[1.05]"
+
                     >
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 via-purple-500 to-blue-500 animate-gradient-x">
                             Generate 365 Days of Social Content, Brand <br />
@@ -115,30 +127,6 @@ export default function LandingPage() {
                             Images • Reels • Captions • Hashtags • Auto Scheduling
                         </p>
                     </motion.div>
-
-                    {/* Buttons */}
-                    <motion.div
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.9 }}
-                    >
-                        <Link
-                            href="/sign-up"
-                            className="h-16 px-12 bg-black text-white rounded-full text-lg font-semibold flex items-center gap-3 shadow-xl shadow-brand-500/20 hover:bg-brand-600 transition-all hover:-translate-y-1 motion-safe:animate-bounce"
-                        >
-                            Try Free
-                            <ArrowRightIcon className="w-5 h-5" />
-                        </Link>
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="h-16 px-12 bg-white text-gray-900 rounded-full text-lg font-medium border border-gray-300 hover:border-brand-300 transition-all hover:bg-gray-50"
-                        >
-                            Watch Demo
-                        </motion.button>
-                    </motion.div>
-
                     {/* Social Icons */}
                     <div className="flex items-center justify-center gap-6 mt-6">
                         {/** Facebook */}
@@ -236,7 +224,7 @@ export default function LandingPage() {
                             "Auto Schedule",
                         ].map((step, index) => (
                             <div key={step} className="flex items-center gap-4">
-                                <div className="px-6 py-3 rounded-full border border-gray-300 text-sm font-medium text-black bg-white shadow-sm">
+                                <div className="px-6 py-3 rounded-full border border-gray-300 text-sm font-medium text-black bg-gray-200 shadow-sm">
                                     {step}
                                 </div>
                                 {index !== 3 && (
@@ -286,7 +274,7 @@ export default function LandingPage() {
                         ].map((item) => (
                             <div
                                 key={item.title}
-                                className="bg-white border border-gray-200 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-all"
+                                className="bg-gray-200 border border-gray-200 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-all"
                             >
                                 <div className="text-4xl mb-4">{item.emoji}</div>
                                 <h3 className="text-lg font-semibold text-black">
@@ -298,90 +286,403 @@ export default function LandingPage() {
 
                 </div>
             </section>
-
-            {/* Features Grid */}
-            <section id="features" className="py-32 bg-white dark:bg-gray-950 relative">
+            {/* Generate Your Year of Content Section */}
+            <section className="py-24 bg-white text-black">
                 <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center mb-24">
-                        <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-6 tracking-tight">Everything you need<br />to scale your presence.</h2>
-                        <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">Stop wasting hours on content creation. Let our AI handle the heavy lifting while you focus on strategy.</p>
+
+                    {/* Top Badge */}
+                    <div className="flex justify-center mb-6">
+                        <span className="px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-semibold">
+                            3 Simple Steps
+                        </span>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8">
-                        <div className="p-10 rounded-[40px] bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 hover:border-brand-500 transition-all group">
-                            <div className="w-16 h-16 bg-white dark:bg-gray-800 rounded-3xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-brand-500 group-hover:text-white transition-all">
-                                <BoltIcon className="w-8 h-8" />
+                    {/* Title */}
+                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+                        Generate Your Year of Content
+                    </h2>
+
+                    {/* Subtitle */}
+                    <p className="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                        One prompt, 365 days of posts. Including local festivals & events.
+                    </p>
+
+                    {/* Cards Row */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+                        {/* CARD 1 */}
+                        <div className="border border-gray-200 rounded-3xl p-8 shadow-sm">
+
+                            {/* Badge */}
+                            <div className="flex items-center gap-3 mb-6">
+                                <span className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-semibold">
+                                    1
+                                </span>
+                                <h3 className="text-xl font-semibold">
+                                    Select your industry
+                                </h3>
                             </div>
-                            <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-4">Instant Generation</h3>
-                            <p className="text-gray-500 dark:text-gray-400 font-medium leading-relaxed">Create weeks worth of content in seconds. Text, images, and hashtags included.</p>
-                        </div>
-                        <div className="p-10 rounded-[40px] bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 hover:border-brand-500 transition-all group">
-                            <div className="w-16 h-16 bg-white dark:bg-gray-800 rounded-3xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-purple-500 group-hover:text-white transition-all">
-                                <CheckCircleIcon className="w-8 h-8" />
+
+                            {/* Dropdown */}
+                            <select className="w-full mb-8 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black">
+                                <option>Choose your industry</option>
+                                <option>Health</option>
+                                <option>Food</option>
+                                <option>Fashion</option>
+                                <option>Real Estate</option>
+                                <option>Education</option>
+                                <option>Finance</option>
+                            </select>
+
+                            {/* Industry Cards */}
+                            <div className="grid grid-cols-3 gap-4">
+                                {[
+                                    { emoji: "🏥", label: "Health" },
+                                    { emoji: "🍔", label: "Food" },
+                                    { emoji: "👗", label: "Fashion" },
+                                    { emoji: "🏠", label: "Real Estate" },
+                                    { emoji: "🎓", label: "Education" },
+                                    { emoji: "💰", label: "Finance" },
+                                ].map((item) => (
+                                    <div
+                                        key={item.label}
+                                        className="border border-gray-200 rounded-2xl py-6 flex flex-col items-center justify-center hover:shadow-md transition"
+                                    >
+                                        <span className="text-2xl mb-2">{item.emoji}</span>
+                                        <span className="text-sm font-medium">{item.label}</span>
+                                    </div>
+                                ))}
                             </div>
-                            <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-4">Brand Consistency</h3>
-                            <p className="text-gray-500 dark:text-gray-400 font-medium leading-relaxed">Our AI learns your brand voice and style to ensure every post sounds like you.</p>
                         </div>
-                        <div className="p-10 rounded-[40px] bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 hover:border-brand-500 transition-all group">
-                            <div className="w-16 h-16 bg-white dark:bg-gray-800 rounded-3xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-blue-500 group-hover:text-white transition-all">
-                                <ShootingStarIcon className="w-8 h-8" />
+
+                        {/* CARD 2 */}
+                        <div className="border border-gray-200 rounded-3xl p-8 shadow-sm">
+
+                            {/* Badge */}
+                            <div className="flex items-center gap-3 mb-6">
+                                <span className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-semibold">
+                                    2
+                                </span>
+                                <h3 className="text-xl font-semibold">
+                                    Describe Your Brand
+                                </h3>
                             </div>
-                            <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-4">Smart Scheduling</h3>
-                            <p className="text-gray-500 dark:text-gray-400 font-medium leading-relaxed">Auto-publish to all your channels at the times your audience is most active.</p>
+
+                            {/* Textarea */}
+                            <div className="relative">
+                                <textarea
+                                    className="w-full h-40 p-4 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black resize-none"
+                                    placeholder="I'm an architect- generate 365 instagram posts, reels and festival creatives."
+                                />
+
+                                {/* Buttons inside textarea */}
+                                <div className="absolute bottom-4 left-4 flex gap-3">
+                                    <button className="px-4 py-2 rounded-lg bg-gray-300 text-black text-sm font-medium">
+                                        Create Now Health Photo!
+                                    </button>
+                                    <button className="px-4 py-2 bg-gray-300 rounded-lg border border-black text-sm font-medium">
+                                        I want to Reals Health Photo!
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Hint */}
+                            <p className="text-sm text-gray-500 mt-4">
+                                <b>Hint:</b> Be specific about your services, target audience, and content style
+                            </p>
+
+                            {/* Final CTA */}
+                            <button className="w-full mt-8 py-4 rounded-2xl bg-gray-400 text-white text-lg font-semibold hover:opacity-90 transition">
+                                Generate 365 Days of Content
+                            </button>
                         </div>
+
+                    </div>
+                </div>
+            </section>
+            {/* Browse Our Library Section */}
+            <section className="py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-6">
+
+                    {/* Top Gradient Badge */}
+                    <div className="flex justify-center mb-6">
+                        <span className="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-violet-600 text-white text-sm font-semibold">
+                            10,000+ Professional Templates
+                        </span>
+                    </div>
+
+                    {/* Title */}
+                    <h2 className="text-4xl md:text-5xl font-bold text-center text-black mb-4">
+                        Browse Our Library
+                    </h2>
+
+                    {/* Subtitle */}
+                    <p className="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                        Industry-specific templates that update instantly based on your selection
+                    </p>
+
+                    {/* Main Card */}
+                    <div className="bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-3xl p-8 shadow-xl border border-gray-200">
+
+                        {/* Top Controls */}
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
+
+                            {/* Tabs */}
+                            <div className="flex gap-3">
+                                {["Images", "Reels", "Festivals & Occasions"].map((tab, i) => (
+                                    <button
+                                        key={tab}
+                                        className={`px-5 py-2 rounded-full text-sm font-medium transition
+                ${i === 0
+                                                ? "bg-black text-white shadow"
+                                                : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-100"
+                                            }`}
+                                    >
+                                        {tab}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Search + Dropdown */}
+                            <div className="flex gap-4">
+                                <input
+                                    type="text"
+                                    placeholder="Search templates"
+                                    className="px-4 py-2 rounded-xl bg-white text-gray-800 placeholder-gray-400 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                />
+
+                                <select className="px-4 py-2 rounded-xl bg-white text-gray-800 border border-gray-300 focus:outline-none">
+                                    <option>Food & Beverages</option>
+                                    <option>Health</option>
+                                    <option>Fashion</option>
+                                    <option>Real Estate</option>
+                                    <option>Education</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {/* Templates Grid */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+                            {Array.from({ length: 15 }).map((_, i) => (
+                                <div
+                                    key={i}
+                                    className="relative aspect-square rounded-2xl bg-white border border-gray-200 shadow-sm hover:shadow-md hover:scale-[1.03] transition-all"
+                                >
+                                    {/* Badge */}
+                                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white text-black text-xs font-semibold shadow">
+                                        #{i + 1}
+                                    </span>
+                                    {/* Image / Placeholder */}
+                                    {i < 4 ? (
+                                        <img
+                                            src={`/templates/template-${i + 1}.jpg`}
+                                            alt={`Template ${i + 1}`}
+                                            className="w-full h-full object-cover rounded-2xl"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
+                                            Template Preview
+                                        </div>
+                                    )}
+
+                                </div>
+                            ))}
+                        </div>
+
                     </div>
                 </div>
             </section>
 
-            {/* Industry Section */}
-            <div id="industries">
-                <IndustrySection />
-            </div>
+            {/* Who We Help Section */}
+            <section className="py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-6 text-center">
+
+                    {/* Gradient Badge */}
+                    <div className="flex justify-center mb-6">
+                        <span className="px-6 py-2 rounded-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-semibold">
+                            Built for Every Industry
+                        </span>
+                    </div>
+
+                    {/* Title */}
+                    <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+                        Who We Help
+                    </h2>
+
+                    {/* Subtitle */}
+                    <p className="text-gray-600 max-w-2xl mx-auto mb-16">
+                        Industry-specific content automation for businesses of all sizes
+                    </p>
+
+                    {/* Cards Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+
+                        {[
+                            { title: "Health & Fitness", emoji: "💪" },
+                            { title: "Food & Beverage", emoji: "🍔" },
+                            { title: "Fashion & Lifestyle", emoji: "👗" },
+                            { title: "Real Estate & Construction", emoji: "🏗️" },
+                            { title: "Education & Coaching", emoji: "🎓" },
+                            { title: "Finance & Business Services", emoji: "💼" },
+                            { title: "Medical & Healthcare", emoji: "🩺" },
+                            { title: "Technology & IT Services", emoji: "💻" },
+                            { title: "Hospitality & Tourism", emoji: "🏨" },
+                            { title: "Automobile Industry", emoji: "🚗" },
+                            { title: "Beauty, Salon & Wellness", emoji: "💅" },
+                            { title: "Retail & E-Commerce", emoji: "🛒" },
+                        ].map((item, index) => (
+                            <div
+                                key={index}
+                                className="rounded-3xl p-6 bg-white border border-gray-200 text-left hover:-translate-y-1 hover:shadow-xl transition-all"
+                            >
+                                {/* Emoji */}
+                                <div className="text-4xl mb-4">{item.emoji}</div>
+
+                                {/* Title */}
+                                <h3 className="text-xl font-semibold text-black mb-4">
+                                    {item.title}
+                                </h3>
+
+                                {/* List */}
+                                <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                                    <li>• Daily social media posts</li>
+                                    <li>• Reels & short videos</li>
+                                    <li>• Festival & promo creatives</li>
+                                </ul>
+
+                                {/* More Link */}
+                                <a
+                                    href="#"
+                                    className="text-sm font-medium text-blue-500 hover:text-black-600"
+                                >
+                                    +5 more
+                                </a>
+                            </div>
+                        ))}
+
+                    </div>
+
+                    {/* Bottom CTA */}
+                    <div className="flex justify-center">
+                        <button className="px-10 h-14 rounded-full bg-black text-white text-sm font-semibold hover:opacity-90 transition">
+                            Find Your Industry
+                        </button>
+                    </div>
+
+                </div>
+            </section>
 
             {/* Pricing */}
             <div id="pricing">
                 {/* Assuming PricingSection is robust, otherwise wrap it */}
                 <PricingSection />
             </div>
+            {/* CTA Section */}
+            <section className="py-32 px-6 bg-gradient-to-br from-blue-600 to-purple-700">
+                <div className="max-w-7xl mx-auto text-center relative overflow-hidden">
 
-            {/* CTA */}
-            <section className="py-32 px-6">
-                <div className="max-w-7xl mx-auto bg-brand-500 rounded-[60px] p-12 md:p-24 text-center relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/10 blur-[100px] rounded-full translate-x-1/2 -translate-y-1/2" />
+                    {/* Glow Effect */}
+                    <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full translate-x-1/2 -translate-y-1/2" />
+                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full -translate-x-1/2 translate-y-1/2" />
+
                     <div className="relative z-10">
-                        <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tight">Ready to transform<br />your social game?</h2>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                            <Link href="/sign-up" className="h-16 px-12 bg-white text-brand-600 rounded-2xl text-lg font-black flex items-center justify-center hover:bg-gray-50 transition-all shadow-xl">
-                                Get Started Now
-                            </Link>
-                            <span className="text-brand-100 font-bold block sm:hidden">or</span>
-                            <button className="text-white font-bold hover:underline">Talk to Sales</button>
-                        </div>
-                        <p className="mt-8 text-brand-100 text-sm font-bold uppercase tracking-widest">No credit card required</p>
+
+                        {/* Title */}
+                        <h2 className="text-4xl md:text-5xl text-white mb-6 leading-tight">
+                            Generate Content Using 10,000+ <br />
+                            AI Prompts
+                        </h2>
+
+                        {/* Subtitle */}
+                        <p className="text-lg md:text-xl text-white/90 mb-12">
+                            In any tone of voice, for any industry
+                        </p>
+
+                        {/* Button */}
+                        <Link
+                            href="/signup"
+                            className="inline-flex items-center justify-center px-12 py-4 rounded-full bg-white text-blue-600 font-semibold text-lg hover:bg-gray-100 transition shadow-xl"
+                        >
+                            Create My Content
+                        </Link>
+
                     </div>
                 </div>
             </section>
+            {/* Follow Us Section */}
+            <section className="py-24 bg-white">
+                <div className="max-w-6xl mx-auto px-6 text-center">
 
+                    {/* Title */}
+                    <h2 className="text-4xl md:text-4xl text-black mb-4">
+                        Follow Us — Where We Post the Future
+                    </h2>
+
+                    {/* Subtitle */}
+                    <p className="text-gray-600 mb-12">
+                        Join our community for tips, updates, and inspiration
+                    </p>
+
+                    {/* Social Icons */}
+                    <div className="flex items-center justify-center gap-6">
+
+                        {[
+                            { icon: <FaTwitter />, label: "Twitter" },
+                            { icon: <FaInstagram />, label: "Instagram" },
+                            { icon: <FaLinkedinIn />, label: "LinkedIn" },
+                            { icon: <FaFacebookF />, label: "Facebook" },
+                            { icon: <FaYoutube />, label: "YouTube" },
+                        ].map((item, index) => (
+                            <a
+                                key={index}
+                                href="#"
+                                aria-label={item.label}
+                                className="w-14 h-14 flex items-center justify-center rounded-full border border-gray-300 text-black bg-white
+                     hover:bg-black hover:text-white hover:border-black transition-all duration-300"
+                            >
+                                <span className="text-xl">{item.icon}</span>
+                            </a>
+                        ))}
+
+                    </div>
+                </div>
+            </section>
             {/* Footer */}
-            <footer className="bg-gray-50 dark:bg-gray-900 py-20 border-t border-gray-100 dark:border-gray-800">
-                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+            <footer className="bg-white dark:bg-gray-900 py-20 border-t border-gray-100 dark:border-gray-800">
+                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-12">
+
+                    {/* Brand + Social */}
                     <div className="col-span-1 md:col-span-2">
+                        {/* Logo */}
                         <div className="flex items-center gap-2 mb-6">
-                            <div className="w-8 h-8 bg-black dark:bg-white rounded-lg flex items-center justify-center text-white dark:text-black font-black">S</div>
-                            <span className="text-xl font-black tracking-tight">Shoutly<span className="text-brand-500">.ai</span></span>
+                            <div className="w-10 h-10 bg-black dark:bg-white rounded-lg flex items-center justify-center text-white dark:text-black font-black text-lg">
+                                S
+                            </div>
+                            <span className="text-xl font-black tracking-tight text-black dark:text-white">
+                                Shoutly<span className="text-brand-500">.ai</span>
+                            </span>
                         </div>
+
                         <p className="text-gray-500 dark:text-gray-400 font-medium max-w-sm mb-8">
                             Empowering creators and brands with AI-driven content tools that save time and amplify impact.
                         </p>
+
+                        {/* Social Icons */}
                         <div className="flex gap-4">
-                            {/* Social Icons Placeholders */}
-                            <div className="w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-brand-500 hover:text-white transition-all cursor-pointer">X</div>
-                            <div className="w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-brand-500 hover:text-white transition-all cursor-pointer">In</div>
-                            <div className="w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-brand-500 hover:text-white transition-all cursor-pointer">Ig</div>
+                            {[FaTwitter, FaInstagram, FaLinkedinIn, FaFacebookF, FaYoutube].map((Icon, i) => (
+                                <div
+                                    key={i}
+                                    className="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center justify-center text-gray-600 hover:bg-brand-500 hover:text-white transition-all cursor-pointer"
+                                >
+                                    <Icon className="w-5 h-5" />
+                                </div>
+                            ))}
                         </div>
                     </div>
+
+                    {/* Product Column */}
                     <div>
-                        <h4 className="font-black text-gray-900 dark:text-white mb-6">Product</h4>
+                        <h4 className="font-black text-gray-900 dark:text-white mb-6">Products</h4>
                         <ul className="space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                             <li><Link href="#" className="hover:text-brand-500">Features</Link></li>
                             <li><Link href="#" className="hover:text-brand-500">Pricing</Link></li>
@@ -389,16 +690,31 @@ export default function LandingPage() {
                             <li><Link href="#" className="hover:text-brand-500">Changelog</Link></li>
                         </ul>
                     </div>
+
+                    {/* Industries Column */}
                     <div>
-                        <h4 className="font-black text-gray-900 dark:text-white mb-6">Company</h4>
+                        <h4 className="font-black text-gray-900 dark:text-white mb-6">Industries</h4>
                         <ul className="space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-                            <li><Link href="#" className="hover:text-brand-500">About Us</Link></li>
-                            <li><Link href="#" className="hover:text-brand-500">Careers</Link></li>
+                            <li><Link href="#" className="hover:text-brand-500">Health & Fitness</Link></li>
+                            <li><Link href="#" className="hover:text-brand-500">Food & Beverage</Link></li>
+                            <li><Link href="#" className="hover:text-brand-500">Education</Link></li>
+                            <li><Link href="#" className="hover:text-brand-500">Real Estate</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Resources Column */}
+                    <div>
+                        <h4 className="font-black text-gray-900 dark:text-white mb-6">Resources</h4>
+                        <ul className="space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                             <li><Link href="#" className="hover:text-brand-500">Blog</Link></li>
-                            <li><Link href="/contact" className="hover:text-brand-500">Contact</Link></li>
+                            <li><Link href="#" className="hover:text-brand-500">Help Center</Link></li>
+                            <li><Link href="#" className="hover:text-brand-500">Guides</Link></li>
+                            <li><Link href="#" className="hover:text-brand-500">Case Studies</Link></li>
                         </ul>
                     </div>
                 </div>
+
+                {/* Bottom Bar */}
                 <div className="max-w-7xl mx-auto px-6 mt-20 pt-10 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-gray-400 text-xs font-bold">© 2026 Shoutly AI Inc. All rights reserved.</p>
                     <div className="flex gap-8 text-gray-400 text-xs font-bold">

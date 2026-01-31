@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutPage() {
     return (
-        <div className="bg-white dark:bg-gray-950 font-outfit">
+        <div className="bg-white dark:bg-gray-950 font-arial">
             {/* Mission Hero */}
             <section className="relative pt-32 pb-24 overflow-hidden">
                 <div className="absolute top-0 right-0 w-full h-[600px] bg-brand-500/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />

@@ -22,7 +22,7 @@ const connectedAccounts = [
 
 export default function SocialAccounts() {
     return (
-        <div className="p-10 font-outfit max-w-[1400px]">
+        <div className="p-10 font-arial max-w-[1400px]">
             <div className="mb-10">
                 <h1 className="text-[32px] font-bold text-gray-900 mb-2">Social Accounts</h1>
                 <p className="text-gray-400 font-medium">Connect your social media accounts to enable auto-posting</p>

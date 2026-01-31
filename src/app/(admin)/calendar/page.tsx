@@ -23,7 +23,7 @@ export default function ContentCalendar() {
     const [view, setView] = useState("14-day");
 
     return (
-        <div className="p-8 font-outfit bg-gray-50/30 min-h-screen">
+        <div className="p-8 font-arial bg-gray-50/30 min-h-screen">
             <div className="max-w-[1600px] mx-auto">
                 <div className="flex justify-between items-center mb-8">
                     <div>

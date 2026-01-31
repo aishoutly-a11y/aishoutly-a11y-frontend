@@ -21,7 +21,7 @@ export default function OnboardingLayout({
     const progress = ((currentStepIndex + 1) / steps.length) * 100;
 
     return (
-        <div className="relative min-h-screen flex flex-col items-center py-12 px-6 font-outfit overflow-hidden">
+        <div className="relative min-h-screen flex flex-col items-center py-12 px-6 font-arial overflow-hidden">
             <AuthBackground />
 
             <div className="mb-12 z-10 flex flex-col items-center">

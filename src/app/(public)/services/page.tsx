@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function ServicesPage() {
     return (
-        <div className="bg-white dark:bg-gray-950 font-outfit">
+        <div className="bg-white dark:bg-gray-950 font-arial">
             {/* Header */}
             <section className="relative py-24 text-center px-6 overflow-hidden">
                 <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-[length:40px_40px] opacity-[0.25] dark:opacity-[0.05]" />

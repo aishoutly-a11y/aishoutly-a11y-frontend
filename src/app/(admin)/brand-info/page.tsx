@@ -5,7 +5,7 @@ import ShoutlyLogo from "@/components/common/ShoutlyLogo";
 
 export default function BrandInfo() {
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-6 font-outfit">
+        <div className="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-6 font-arial">
             <div className="mb-8">
                 <ShoutlyLogo className="scale-110" />
             </div>

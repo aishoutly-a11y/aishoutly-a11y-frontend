@@ -5,7 +5,7 @@ import { PlusIcon } from "@/icons";
 
 export default function ConnectLink() {
     return (
-        <div className="p-10 font-outfit max-w-[1000px]">
+        <div className="p-10 font-arial max-w-[1000px]">
             <div className="mb-12">
                 <h1 className="text-4xl font-black text-gray-900 dark:text-white tracking-tight mb-2">Connect Accounts</h1>
                 <p className="text-gray-500 dark:text-gray-400 font-medium text-lg">Manage your connected social platforms and integrations.</p>

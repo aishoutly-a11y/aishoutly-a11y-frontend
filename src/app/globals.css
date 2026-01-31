@@ -2,7 +2,8 @@
 
 @theme {
   --font-*: initial;
-  --font-outfit: Outfit, sans-serif;
+  --font-arial: Arial, Helvetica, sans-serif;
+
 
   --breakpoint-*: initial;
   --breakpoint-2xsm: 375px;
@@ -181,7 +182,7 @@
   }
 
   body {
-    @apply relative font-normal font-outfit z-1 bg-gray-50;
+    @apply relative font-normal font-arial z-1 bg-gray-50;
   }
 }
 @keyframes gradient-x {

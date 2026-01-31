@@ -5,7 +5,7 @@ import { CalenderIcon, GridIcon, TimeIcon, CheckCircleIcon, ShootingStarIcon, Pi
 
 const Dashboard: React.FC = () => {
     return (
-        <div className="p-10 font-outfit max-w-[1600px] mx-auto min-h-screen">
+        <div className="p-10 font-arial max-w-[1600px] mx-auto min-h-screen">
             {/* Header Section */}
             <div className="mb-10 flex justify-between items-center">
                 <div>

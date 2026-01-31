@@ -17,7 +17,7 @@ export default function GenerateContent() {
     const [selectedIndustry, setSelectedIndustry] = useState("");
 
     return (
-        <div className="p-10 font-outfit max-w-[1200px]">
+        <div className="p-10 font-arial max-w-[1200px]">
             <div className="mb-10">
                 <h1 className="text-[32px] font-bold text-gray-900 mb-2">Generate Content</h1>
                 <p className="text-gray-400 font-medium">Create a full year of AI-powered social media content</p>

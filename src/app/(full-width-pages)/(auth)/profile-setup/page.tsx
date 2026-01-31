@@ -24,7 +24,7 @@ export default function ProfileSetup() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 font-outfit dark:bg-gray-950">
+        <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 font-arial dark:bg-gray-950">
             <div className="w-full max-w-md">
                 {/* Logo */}
                 <div className="flex justify-center mb-8">

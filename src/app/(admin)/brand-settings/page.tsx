@@ -12,7 +12,7 @@ export default function BrandSettings() {
     const [overlayOpacity, setOverlayOpacity] = useState(90);
 
     return (
-        <div className="p-10 font-outfit max-w-[1600px] mx-auto">
+        <div className="p-10 font-arial max-w-[1600px] mx-auto">
             <div className="mb-8">
                 <h1 className="text-[28px] font-bold text-gray-900 dark:text-white mb-2">Brand Overlay Settings</h1>
                 <p className="text-gray-500 font-medium text-sm">Customize how your logo and contact info appear on posts</p>

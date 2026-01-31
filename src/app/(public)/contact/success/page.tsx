@@ -6,7 +6,7 @@ import ShoutlyLogo from "@/components/common/ShoutlyLogo";
 
 export default function ContactSuccessPage() {
     return (
-        <div className="bg-white font-outfit min-h-screen flex items-center justify-center p-6">
+        <div className="bg-white font-arial min-h-screen flex items-center justify-center p-6">
             <div className="w-full max-w-xl flex flex-col items-center text-center">
                 <div className="mb-12">
                     <ShoutlyLogo />

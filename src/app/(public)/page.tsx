@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function HomePage() {
     return (
-        <div className="bg-white text-gray-900 font-outfit">
+        <div className="bg-white text-gray-900 font-arial">
             {/* 1. HERO SECTION */}
             <LandingHero />
 

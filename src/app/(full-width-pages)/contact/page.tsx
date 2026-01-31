@@ -5,7 +5,7 @@ import { ChevronDownIcon } from "@/icons";
 
 export default function ContactPage() {
     return (
-        <div className="min-h-screen bg-[#eff2ff] relative overflow-hidden flex flex-col items-center justify-center p-6 sm:p-10 font-outfit">
+        <div className="min-h-screen bg-[#eff2ff] relative overflow-hidden flex flex-col items-center justify-center p-6 sm:p-10 font-arial">
             {/* Decorative Background Elements */}
             <div className="absolute top-[-100px] right-[-100px] w-[400px] h-[400px] bg-blue-400/20 rotate-45 rounded-[120px]" />
             <div className="absolute bottom-[-150px] left-[-150px] w-[500px] h-[500px] bg-blue-300/30 -rotate-12 rounded-[160px]" />

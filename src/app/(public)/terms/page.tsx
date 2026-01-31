@@ -1,6 +1,6 @@
 export default function TermsPage() {
     return (
-        <div className="bg-white dark:bg-gray-950 font-outfit">
+        <div className="bg-white dark:bg-gray-950 font-arial">
             <div className="max-w-4xl mx-auto px-6 py-24">
                 <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">Terms of Service</h1>
                 <div className="prose prose-lg dark:prose-invert">

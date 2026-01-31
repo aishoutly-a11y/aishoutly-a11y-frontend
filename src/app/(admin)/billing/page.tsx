@@ -6,7 +6,7 @@ export default function Billing() {
     const [billingCycle, setBillingCycle] = useState("monthly");
 
     return (
-        <div className="p-10 font-outfit max-w-[1200px] mx-auto pb-20">
+        <div className="p-10 font-arial max-w-[1200px] mx-auto pb-20">
             <div className="text-center mb-12">
                 <h1 className="text-[32px] font-bold text-gray-900 mb-2">Subscription & Billing</h1>
                 <p className="text-gray-400 font-medium">Manage your plan and payment information</p>
