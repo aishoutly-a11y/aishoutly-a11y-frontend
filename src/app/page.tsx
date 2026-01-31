@@ -600,11 +600,12 @@ export default function LandingPage() {
 
                         {/* Button */}
                         <Link
-                            href="/signup"
+                            href="/sign-up"
                             className="inline-flex items-center justify-center px-12 py-4 rounded-full bg-white text-blue-600 font-semibold text-lg hover:bg-gray-100 transition shadow-xl"
                         >
                             Create My Content
                         </Link>
+
 
                     </div>
                 </div>
