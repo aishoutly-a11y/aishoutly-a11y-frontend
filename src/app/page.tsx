@@ -3,7 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import React from "react";
 import Link from "next/link";
-
+import { SparklesIcon } from "@heroicons/react/24/outline";
 import { useRef, useState } from "react";
 import IndustrySection from "@/components/public/IndustrySection";
 import PricingSection from "@/components/public/PricingSection";
@@ -27,7 +27,7 @@ export default function LandingPage() {
 
                     {/* Logo */}
                     <div className="flex items-center gap-2">
-                        <div className="w-32 h-27 relative">
+                        <div className="w-40 h-36 relative">
                             <Image
                                 src="/images/logo.png"
                                 alt="Shoutly.ai Logo"
@@ -67,7 +67,7 @@ export default function LandingPage() {
 
                         <Link
                             href="/sign-up"
-                            className="h-10 px-6 bg-black text-white rounded-full text-xs font-semibold uppercase tracking-wider flex items-center hover:opacity-80 transition-all"
+                            className="h-10 px-6 bg-[#000000] text-white rounded-full text-xs font-semibold uppercase tracking-wider flex items-center hover:opacity-80 transition-all"
                         >
                             Get Started
                         </Link>
@@ -76,7 +76,7 @@ export default function LandingPage() {
                 </div>
             </nav>
             {/* Hero Section */}
-            <header className="pt-32 pb-20 px-6 relative overflow-hidden bg-white">
+            <header className="pt-32 pb-40 px-6 relative overflow-hidden bg-white">
                 {/* Background Image with subtle floating animation */}
                 <motion.div
                     className="absolute inset-0 bg-cover bg-center opacity-[0.6]"
@@ -95,14 +95,19 @@ export default function LandingPage() {
                 {/* Content */}
                 <div className="max-w-7xl mx-auto text-center relative z-10">
                     <motion.span
-                        className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-white/50 dark:bg-brand-900/20 text-brand-200 dark:text-brand-100 text-[10px] font-black uppercase tracking-widest mb-8 border border-brand-100 dark:border-brand-900/30"
+                        className="inline-flex items-center gap-2 py-2 px-4 rounded-full 
+               bg-white/60 backdrop-blur-sm text-blue-600 
+               text-[10px] uppercase tracking-widest mb-8 
+               border border-blue-200"
+                        style={{ fontFamily: "Arial", fontWeight: 600 }}
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1 }}
                     >
-                        <span className="w-2 h-2 rounded-full bg-brand-200 animate-pulse" />
+                        <SparklesIcon className="w-4 h-4 text-blue-600" />
                         AI-Powered Content Generation
                     </motion.span>
+
                     <motion.h1
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -110,14 +115,33 @@ export default function LandingPage() {
                         className="text-5xl md:text-7xl lg:text-6xl font-normal mb-8 tracking-tight leading-[1.05]"
 
                     >
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 via-purple-500 to-blue-500 animate-gradient-x">
-                            Generate 365 Days of Social Content, Brand <br />
-                            Designs, Reels & Hashtags — in Minutes.
-                        </span>
-                    </motion.h1>
+                        <h1 className="text-5xl md:text-7xl lg:text-6xl font-normal mb-8 tracking-tight leading-[1.05]">
+                            {/* Generate */}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-purple-700">
+                                Generate{" "}
+                            </span>
 
+                            {/* 365 Days */}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-pink-500">
+                                365 Days{" "}
+                            </span>
+
+                            {/* of Social Content, Brand */}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-black">
+                                of Social Content, Brand
+                            </span>
+
+                            <br />
+
+                            {/* Designs, Reels & Hashtags - in Minutes. */}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-black">
+                                Designs, Reels & Hashtags — in Minutes.
+                            </span>
+                        </h1>
+
+                    </motion.h1>
                     <motion.div
-                        className="text-xl md:text-xl text-black dark:text-black mb-12 max-w-2xl mx-auto font-normal leading-relaxed space-y-3"
+                        className="text-xl md:text-xl text-[#000000] dark:text-black mb-12 max-w-2xl mx-auto font-normal leading-relaxed space-y-3"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.6 }}
@@ -126,7 +150,44 @@ export default function LandingPage() {
                         <p className="text-lg text-blue-600 font-light">
                             Images • Reels • Captions • Hashtags • Auto Scheduling
                         </p>
+
                     </motion.div>
+                    {/* Action Buttons */}
+                    <div className="flex items-center justify-center gap-4 mb-6">
+
+                        {/* Try Free Button */}
+                        <button
+                            className="flex items-center gap-2 px-7 py-3 rounded-full bg-[#000000] text-white hover:opacity-90 transition"
+                            style={{ fontFamily: "Arial", fontWeight: 400 }}
+                        >
+                            <svg
+                                className="w-4 h-4"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+                            </svg>
+
+                            <span className="text-sm">Try Free</span>
+                        </button>
+
+                        {/* Watch Video Button */}
+                        <button
+                            className="flex items-center gap-2 px-7 py-3 rounded-full bg-white text-black border border-gray-300 hover:bg-gray-50 transition"
+                            style={{ fontFamily: "Arial", fontWeight: 400 }}
+                        >
+                            <svg
+                                className="w-4 h-4"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                            <span className="text-sm">Watch Video</span>
+                        </button>
+
+                    </div>
+
                     {/* Social Icons */}
                     <div className="flex items-center justify-center gap-6 mt-6">
                         {/** Facebook */}
@@ -204,6 +265,11 @@ export default function LandingPage() {
                             </svg>
                         </motion.a>
                     </div>
+                    {/* Rocket Accent */}
+                    <span className="absolute bottom-6 left-6 text-5xl select-none">
+                        🚀
+                    </span>
+
                 </div>
             </header>
             {/* See It In Action Section */}
@@ -211,29 +277,33 @@ export default function LandingPage() {
                 <div className="max-w-7xl mx-auto px-6 text-center">
 
                     {/* Title */}
-                    <h2 className="text-4xl md:text-5xl font-semibold text-black mb-12">
+                    <h2 className="text-4xl md:text-5xl text-[#000000] font-arial mb-12">
                         See it in Action
                     </h2>
 
                     {/* Flow Steps */}
                     <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
                         {[
-                            "Select Industry",
-                            "Enter Prompt",
-                            "AI Generates",
-                            "Auto Schedule",
+                            { label: "Select Industry", color: "bg-blue-500" },
+                            { label: "Enter Prompt", color: "bg-violet-500" },
+                            { label: "AI Generates", color: "bg-pink-500" },
+                            { label: "Auto Schedule", color: "bg-green-500" },
                         ].map((step, index) => (
-                            <div key={step} className="flex items-center gap-4">
-                                <div className="px-6 py-3 rounded-full border border-gray-300 text-sm font-medium text-black bg-gray-200 shadow-sm">
-                                    {step}
+                            <div key={step.label} className="flex items-center gap-4">
+                                <div className="flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 text-sm font-medium text-black bg-gray-200 shadow-sm">
+
+                                    {/* Colored dot */}
+                                    <span className={`w-2.5 h-2.5 rounded-full ${step.color}`} />
+
+                                    {step.label}
                                 </div>
+
                                 {index !== 3 && (
                                     <span className="text-gray-400 text-xl">→</span>
                                 )}
                             </div>
                         ))}
                     </div>
-
                     {/* Video Section */}
                     <div className="relative max-w-4xl mx-auto mb-20">
                         <div className="relative aspect-video rounded-3xl overflow-hidden border border-gray-200 shadow-lg bg-black">
@@ -292,13 +362,20 @@ export default function LandingPage() {
 
                     {/* Top Badge */}
                     <div className="flex justify-center mb-6">
-                        <span className="px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-semibold">
-                            3 Simple Steps
+                        <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-semibold">
+                            <svg
+                                className="w-4 h-4"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+                            </svg>
+                            <span>3 Simple Steps</span>
                         </span>
                     </div>
 
                     {/* Title */}
-                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+                    <h2 className="text-4xl md:text-5xl text-center mb-4">
                         Generate Your Year of Content
                     </h2>
 
@@ -315,7 +392,7 @@ export default function LandingPage() {
 
                             {/* Badge */}
                             <div className="flex items-center gap-3 mb-6">
-                                <span className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-semibold">
+                                <span className="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center font-semibold">
                                     1
                                 </span>
                                 <h3 className="text-xl font-semibold">
@@ -356,11 +433,11 @@ export default function LandingPage() {
                         </div>
 
                         {/* CARD 2 */}
-                        <div className="border border-gray-200 rounded-3xl p-8 shadow-sm">
+                        <div className="border border-gray-200 rounded-3xl p-8 shadow-sm bg-gray-100">
 
                             {/* Badge */}
                             <div className="flex items-center gap-3 mb-6">
-                                <span className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-semibold">
+                                <span className="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center font-semibold">
                                     2
                                 </span>
                                 <h3 className="text-xl font-semibold">
@@ -371,7 +448,7 @@ export default function LandingPage() {
                             {/* Textarea */}
                             <div className="relative">
                                 <textarea
-                                    className="w-full h-40 p-4 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black resize-none"
+                                    className="w-full h-50 p-4 bg-white rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black resize-none"
                                     placeholder="I'm an architect- generate 365 instagram posts, reels and festival creatives."
                                 />
 
@@ -390,9 +467,8 @@ export default function LandingPage() {
                             <p className="text-sm text-gray-500 mt-4">
                                 <b>Hint:</b> Be specific about your services, target audience, and content style
                             </p>
-
                             {/* Final CTA */}
-                            <button className="w-full mt-8 py-4 rounded-2xl bg-gray-400 text-white text-lg font-semibold hover:opacity-90 transition">
+                            <button className="w-full mt-8 py-4 rounded-2xl bg-gradient-to-r from-gray-300 to-gray-500 text-white text-lg font-semibold hover:opacity-90 transition">
                                 Generate 365 Days of Content
                             </button>
                         </div>
@@ -403,16 +479,17 @@ export default function LandingPage() {
             {/* Browse Our Library Section */}
             <section className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
-
                     {/* Top Gradient Badge */}
                     <div className="flex justify-center mb-6">
-                        <span className="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-violet-600 text-white text-sm font-semibold">
+                        <span className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 text-white text-sm font-semibold">
+                            <SparklesIcon className="w-4 h-4 text-white" />
                             10,000+ Professional Templates
                         </span>
                     </div>
 
+
                     {/* Title */}
-                    <h2 className="text-4xl md:text-5xl font-bold text-center text-black mb-4">
+                    <h2 className="text-4xl md:text-5xl text-center text-black mb-4">
                         Browse Our Library
                     </h2>
 
@@ -469,7 +546,7 @@ export default function LandingPage() {
                                     className="relative aspect-square rounded-2xl bg-white border border-gray-200 shadow-sm hover:shadow-md hover:scale-[1.03] transition-all"
                                 >
                                     {/* Badge */}
-                                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white text-black text-xs font-semibold shadow">
+                                    <span className="absolute top-3 right-3 px-3 py-1 rounded-full bg-white text-gray-400 text-xs font-semibold shadow">
                                         #{i + 1}
                                     </span>
                                     {/* Image / Placeholder */}
@@ -499,13 +576,15 @@ export default function LandingPage() {
 
                     {/* Gradient Badge */}
                     <div className="flex justify-center mb-6">
-                        <span className="px-6 py-2 rounded-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-semibold">
+                        <span className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-semibold">
+                            <SparklesIcon className="w-4 h-4 text-white" />
                             Built for Every Industry
                         </span>
                     </div>
 
+
                     {/* Title */}
-                    <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+                    <h2 className="text-4xl md:text-5xl text-black mb-4">
                         Who We Help
                     </h2>
 
@@ -539,7 +618,7 @@ export default function LandingPage() {
                                 <div className="text-4xl mb-4">{item.emoji}</div>
 
                                 {/* Title */}
-                                <h3 className="text-xl font-semibold text-black mb-4">
+                                <h3 className=" text-black mb-4">
                                     {item.title}
                                 </h3>
 
@@ -594,15 +673,15 @@ export default function LandingPage() {
                         </h2>
 
                         {/* Subtitle */}
-                        <p className="text-lg md:text-xl text-white/90 mb-12">
+                        <p className="md:text-xl text-white/90 mb-12">
                             In any tone of voice, for any industry
                         </p>
 
                         {/* Button */}
                         <Link
                             href="/sign-up"
-                            className="inline-flex items-center justify-center px-12 py-4 rounded-full bg-white text-blue-600 font-semibold text-lg hover:bg-gray-100 transition shadow-xl"
-                        >
+                            className="inline-flex items-center justify-center px-12 py-4 rounded-full bg-white text-blue-600 text-lg hover:bg-gray-100 transition shadow-xl"
+                        > <SparklesIcon className="w-6 h-6 text-blue-600" />&nbsp;
                             Create My Content
                         </Link>
 
