@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function VerifyEmailPage() {
+    const router = useRouter();
+
     return (
         <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
 
@@ -56,11 +59,13 @@ export default function VerifyEmailPage() {
 
                 {/* Button */}
                 <button
+                    onClick={() => router.push("/account-setup")}
                     className="w-full h-12 bg-[#000000] text-white rounded-xl hover:opacity-90 transition mb-4"
                     style={{ fontFamily: "Arial", fontWeight: 400 }}
                 >
                     Verify & Continue
                 </button>
+
 
                 {/* Resend */}
                 <p

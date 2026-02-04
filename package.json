@@ -23,6 +23,7 @@
     "apexcharts": "^4.7.0",
     "flatpickr": "^4.6.13",
     "framer-motion": "^12.29.2",
+    "lucide-react": "^0.563.0",
     "next": "16.1.1",
     "react": "^19.2.0",
     "react-apexcharts": "^1.8.0",
