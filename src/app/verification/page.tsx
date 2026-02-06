@@ -59,7 +59,7 @@ export default function VerifyEmailPage() {
 
                 {/* Button */}
                 <button
-                    onClick={() => router.push("/account-setup")}
+                    onClick={() => router.push("/create-password")}
                     className="w-full h-12 bg-[#000000] text-white rounded-xl hover:opacity-90 transition mb-4"
                     style={{ fontFamily: "Arial", fontWeight: 400 }}
                 >

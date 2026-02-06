@@ -1,10 +1,12 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { UserIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 
 export default function CreateAccountPage() {
+    const router = useRouter();
+
     return (
         <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
 
@@ -83,13 +85,12 @@ export default function CreateAccountPage() {
                     />
                 </div>
                 <button
+                    onClick={() => router.push("/verification")}
                     className="w-full h-12 bg-[#000000] text-white rounded-xl hover:opacity-90 transition mb-4"
                     style={{ fontFamily: "Arial", fontWeight: 400 }}
                 >
                     Create Account
                 </button>
-
-
 
                 {/* Sign in */}
                 <p

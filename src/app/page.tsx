@@ -67,9 +67,9 @@ export default function LandingPage() {
 
                         <Link
                             href="/sign-up"
-                            className="h-10 px-6 bg-[#000000] text-white rounded-full text-xs font-semibold uppercase tracking-wider flex items-center hover:opacity-80 transition-all"
+                            className="h-10 px-6 bg-[#000000] text-white rounded-full text-xs tracking-wider flex items-center hover:opacity-80 transition-all"
                         >
-                            Get Started
+                            Sign Up Free
                         </Link>
                     </div>
 
