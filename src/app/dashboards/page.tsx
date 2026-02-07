@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
+import { Sparkles, StarIcon } from "lucide-react";
 import {
     HomeIcon,
     SparklesIcon,
@@ -18,15 +20,21 @@ import {
     CursorArrowRaysIcon,
     ArrowTrendingUpIcon,
     ClockIcon,
-    ArrowUpTrayIcon, PencilIcon, EyeIcon, TrashIcon
+    ArrowUpTrayIcon, PencilIcon, EyeIcon, TrashIcon, PlusIcon,
+    MagnifyingGlassIcon,
+    FunnelIcon,
 
 } from "@heroicons/react/24/outline";
 import {
     FaYoutube,
-    FaInstagram,
     FaFacebook,
     FaLinkedin,
     FaTwitter,
+    FaCheckCircle,
+    FaCheck,
+    FaInstagram,
+    FaFacebookF,
+    FaSyncAlt,
 } from "react-icons/fa";
 
 const menuItems = [
@@ -42,7 +50,7 @@ const menuItems = [
 
 export default function DashboardPage() {
     const [activeTab, setActiveTab] = useState("Dashboard");
-
+    const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
     return (
         <div className="flex min-h-screen bg-gray-50 font-arial">
 
@@ -525,7 +533,7 @@ export default function DashboardPage() {
 
                                             {/* Description */}
                                             <p className="text-sm text-gray-600 mb-3">
-                                                Guess the next hotspot in town 😊 We can't wait to see you at the...
+                                                Guess the next hotspot in town 😊 We can't wait to see you ...
                                             </p>
 
                                             {/* Video Placeholder */}
@@ -556,6 +564,659 @@ export default function DashboardPage() {
                                     ))}
 
                                 </div>
+                            </div>
+                        </div>
+                    )}
+                    {activeTab === "Image & Reel Library" && (
+                        <div className="p-6 bg-gray-50">
+
+                            {/* Title + Action */}
+                            <div className="flex justify-between items-center mb-6">
+                                <div>
+                                    <h2 className="text-xl">Image & Reel Library</h2>
+                                    <p className="text-gray-500">
+                                        Browse and manage your content templates
+                                    </p>
+                                </div>
+
+                                <button className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-xl">
+                                    <PlusIcon className="w-4 h-4" />
+                                    Upload Custom
+                                </button>
+                            </div>
+
+                            {/* Library Card */}
+                            <div className="bg-white rounded-xl shadow-lg p-5">
+
+                                {/* Top Controls */}
+                                <div className="flex justify-between items-center mb-6">
+
+                                    {/* Tabs */}
+                                    <div className="flex gap-6">
+                                        {["Images", "Reels", "Festivals & Occasions"].map((tab, i) => (
+                                            <span
+                                                key={tab}
+                                                className={`cursor-pointer pb-1 ${i === 0
+                                                    ? "text-black border-b-2 border-black"
+                                                    : "text-gray-400"
+                                                    }`}
+                                            >
+                                                {tab}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    {/* Search + Filter */}
+                                    <div className="flex gap-3">
+                                        <div className="relative">
+                                            <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                            <input
+                                                placeholder="Search library..."
+                                                className="pl-9 pr-3 py-2 border rounded-lg text-sm"
+                                            />
+                                        </div>
+
+                                        <button className="flex items-center gap-2 border px-4 py-2 rounded-lg bg-white">
+                                            <FunnelIcon className="w-4 h-4 text-black" />
+                                            Filters
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Cards Grid */}
+                                <div className="grid grid-cols-6 gap-4">
+                                    {Array.from({ length: 24 }).map((_, i) => {
+                                        const badges = ["Motivation", "Product", "Tutorial", "Festival"];
+                                        const badge = badges[i % badges.length];
+
+                                        return (
+                                            <div
+                                                key={i}
+                                                className="
+                    relative
+                    h-64
+                    rounded-xl
+                    overflow-hidden
+                    shadow-xl
+                    bg-gray-200
+                "
+                                            >
+                                                {/* Image */}
+                                                <img
+                                                    src="images/motivation.jpg"
+                                                    alt="Post preview"
+                                                    className="w-full h-full object-cover"
+                                                />
+
+                                                {/* Overlay (optional – gives better contrast) */}
+                                                <div className="absolute inset-0 bg-black/10" />
+
+                                                {/* Badge */}
+                                                <span
+                                                    className="
+                        absolute
+                        top-3
+                        left-3
+                        bg-white
+                        text-gray-600
+                        text-xs
+                        px-2
+                        py-1
+                        rounded-md
+                        shadow
+                    "
+                                                >
+                                                    {badge}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+
+                            </div>
+                        </div>
+                    )}
+
+                    {activeTab === "Brand Settings" && (
+                        <div className="p-6 bg-gray-50">
+
+                            {/* Page Title */}
+                            <div className="mb-6">
+                                <h2 className="text-xl">Brand Overlay Settings</h2>
+                                <p className="text-gray-500">
+                                    Customize how your logo and contact info appear on posts
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-6">
+
+                                {/* LEFT SIDE */}
+                                <div className="space-y-6">
+
+                                    {/* Live Preview Card */}
+                                    <div className="bg-white p-4 shadow-xl">
+
+                                        <p className="text-sm text-gray-600 mb-3">Live Preview</p>
+
+                                        {/* Image Preview */}
+                                        <div className="relative h-96 bg-gray-200 overflow-hidden rounded-xl">
+
+                                            {/* Image */}
+                                            <img
+                                                src="/images/sport.jpg" // replace with your image path
+                                                alt="Template Preview"
+                                                className="w-full h-full object-cover"
+                                            />
+
+                                            {/* AI Badge */}
+                                            <div className="absolute top-3 left-3 bg-white p-2 rounded-md shadow flex items-center gap-1">
+                                                <Sparkles className="w-4 h-4 text-purple-600" />
+                                            </div>
+
+                                            {/* Contact Info */}
+                                            <div className="absolute bottom-3 right-3 bg-white px-3 py-2 text-xs text-gray-600 shadow rounded-md">
+                                                <p>+1 (555) 123-4567</p>
+                                                <p>www.yourcompany.com</p>
+                                            </div>
+                                        </div>
+                                        {/* Info Text */}
+                                        <p className="mt-4 text-sm text-violet-600 bg-gray-100 border border-gray-300 p-3">
+                                            This overlay will be automatically applied to all generated posts
+                                        </p>
+                                    </div>
+
+                                    {/* States */}
+                                    <div>
+                                        <h3 className="mb-2">States</h3>
+                                        <div className="border p-4 text-sm text-gray-700 whitespace-pre-line">
+                                            Fresh brews. Cozy vibes. Good food, great conversations, and your daily
+                                            dose of happiness ☕️✨ Whether it’s your morning coffee or an evening
+                                            catch-up, we’ve got the perfect spot waiting for you. 📍 Visit us today 💛
+                                            Sip. Relax. Repeat.
+                                            <br />
+                                            <span className="text-blue-600">
+                                                #CafeVibes #CoffeeLovers #CafeTime #GoodCoffeeGoodMood #LocalCafe
+                                                #CoffeeBreak #CafeLife
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                {/* RIGHT SIDE */}
+                                <div className="space-y-6">
+
+                                    {/* Logo Card */}
+                                    <div className="bg-white p-5 shadow-xl">
+
+                                        <div className="flex items-center gap-2 mb-3">
+                                            <ArrowUpTrayIcon className="w-5 h-5" />
+                                            <h3>Logo</h3>
+                                        </div>
+
+                                        {/* Upload Box */}
+                                        <div className="border h-40 flex flex-col items-center justify-center mb-4 bg-gray-50">
+                                            <ArrowUpTrayIcon className="w-8 h-8 text-gray-400 mb-2" />
+                                            <p className="text-sm">Upload your logo</p>
+                                            <p className="text-xs text-gray-500">
+                                                PNG, JPG or SVG (max 5MB)
+                                            </p>
+                                        </div>
+
+                                        {/* Logo Position */}
+                                        <p className="mb-2">Logo Position</p>
+                                        <div className="grid grid-cols-2 gap-3 mb-4">
+                                            {["Top Left", "Top Right", "Bottom Left", "Bottom Right"].map(pos => (
+                                                <button
+                                                    key={pos}
+                                                    className="border px-3 py-2 text-sm hover:border-purple-500"
+                                                >
+                                                    {pos}
+                                                </button>
+                                            ))}
+                                        </div>
+
+                                        {/* Logo Size */}
+                                        <p>Logo Size:</p>
+                                        <p className="text-sm mb-2">64px</p>
+                                        <div className="h-2 bg-gray-200">
+                                            <div className="h-2 bg-black-500 w-1/2" />
+                                        </div>
+                                    </div>
+
+                                    {/* Image Overlay Text */}
+                                    <div className="bg-white p-5 shadow-xl">
+                                        <h3 className="mb-2">Image Overlay Text</h3>
+
+                                        <textarea
+                                            className="w-full border p-3 text-sm mb-4"
+                                            rows={4}
+                                            placeholder="Fresh brews, Cozy vibes, Good food, great conversations and your daily dose of happiness ☕️✨ Whether it's your morning."
+                                        />
+
+                                        <h4 className="mb-2">Contact Information</h4>
+
+                                        <label className="text-sm block mb-1">Phone Number</label>
+                                        <input
+                                            className="w-full border p-2 text-sm"
+                                            placeholder="+1 (555) 123-4567"
+                                        />
+                                    </div>
+
+                                    {/* Brand Colors */}
+                                    <div className="bg-white p-5 shadow-xl">
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <SwatchIcon className="w-5 h-5" />
+                                            <h3>Brand Colors</h3>
+                                        </div>
+
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label className="text-sm block mb-1">Primary Color</label>
+                                                <div className="flex gap-2">
+                                                    <div className="w-8 h-8 bg-purple-500" />
+                                                    <input
+                                                        className="border p-2 text-sm flex-1"
+                                                        placeholder="#8B5CF6"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label className="text-sm block mb-1">Secondary Color</label>
+                                                <div className="flex gap-2">
+                                                    <div className="w-8 h-8 bg-pink-500" />
+                                                    <input
+                                                        className="border p-2 text-sm flex-1"
+                                                        placeholder="#EC4899"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* Social Time */}
+                                    <div className="space-y-3">
+                                        {[
+                                            { icon: FaFacebook, color: "text-blue-600" },
+                                            { icon: FaTwitter, color: "text-sky-500" },
+                                            { icon: FaLinkedin, color: "text-blue-700" },
+                                            { icon: FaYoutube, color: "text-red-600" },
+                                            { icon: FaInstagram, color: "text-pink-500" },
+                                        ].map(({ icon: Icon, color }, i) => (
+                                            <div key={i} className="flex items-center gap-3">
+                                                <Icon className={`w-5 h-5 ${color}`} />
+
+                                                <div className="flex bg-gray-200 rounded overflow-hidden">
+                                                    <span className="bg-black text-white px-2">8</span>
+                                                    <span className="bg-black text-white px-2">30</span>
+                                                    <span className="px-2 text-black">pm</span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+
+                                    {/* Overlay Settings */}
+                                    <div className="bg-white p-5 shadow-xl">
+                                        <h3 className="mb-2">Overlay Settings</h3>
+                                        <p>Opacity:</p>
+                                        <p className="text-sm mb-2">90%</p>
+                                        <div className="h-2 bg-gray-200">
+                                            <div className="h-2 bg-black w-[90%]" />
+                                        </div>
+                                    </div>
+
+                                    {/* Save Button */}
+                                    <button className="w-full bg-[#000000] text-white py-3">
+                                        Save Brand Settings
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {activeTab === "Social Accounts" && (
+                        <div className="space-y-6 pl-8 pr-8 pt-3">
+
+                            {/* Title */}
+                            <div>
+                                <h2 className="text-xl text-gray-900">
+                                    Social Accounts
+                                </h2>
+                                <p className="text-gray-500 text-sm">
+                                    Connect your social media accounts to enable auto-posting
+                                </p>
+                            </div>
+
+                            {/* Why Connect Card */}
+                            <div className="bg-blue-50 border border-blue-100 rounded-xl p-5">
+                                <div className="flex items-start gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
+                                        <FaCheckCircle className="text-white w-5 h-5" />
+                                    </div>
+
+                                    <div>
+                                        <h4 className=" text-gray-900 mb-2">
+                                            Why connect your accounts?
+                                        </h4>
+
+                                        <ul className="space-y-2 text-sm text-gray-700">
+                                            <li className="flex gap-2 items-start">
+                                                <FaCheck className="text-blue-600 mt-1" />
+                                                Auto-publish content directly to your platforms
+                                            </li>
+                                            <li className="flex gap-2 items-start">
+                                                <FaCheck className="text-blue-600 mt-1" />
+                                                Schedule posts to go live at optimal times
+                                            </li>
+                                            <li className="flex gap-2 items-start">
+                                                <FaCheck className="text-blue-600 mt-1" />
+                                                Track performance and engagement metrics
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Instagram Card */}
+                            <div className="bg-white rounded-xl border p-5 space-y-4">
+                                <div className="flex justify-between items-start">
+                                    <div className="flex gap-4">
+                                        <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center mt-2">
+                                            <FaInstagram className="text-pink-500 w-6 h-6" />
+                                        </div>
+
+                                        <div>
+                                            <div className="flex items-center gap-2">
+                                                <h4 className=" text-gray-900">
+                                                    Instagram
+                                                </h4>
+                                                <span className="flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+                                                    <FaCheckCircle className="w-3 h-3" />
+                                                    Connected
+                                                </span>
+                                            </div>
+
+                                            <p className="text-sm text-gray-600">@yourbusiness</p>
+                                            <p className="text-xs text-gray-400">
+                                                Last synced: 2 mins ago
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex gap-2">
+                                        <button className="flex items-center gap-1 px-3 py-1.5 text-sm border rounded-lg bg-white text-black">
+
+                                            Refresh
+                                        </button>
+                                        <button className="px-3 py-1.5 text-sm border border-red-500 text-red-500 rounded-lg bg-white">
+                                            Disconnect
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div className="grid grid-cols-4 text-center">
+                                    <div>
+                                        <p className="">142</p>
+                                        <p className="text-xs text-gray-500">Posts Published</p>
+                                    </div>
+                                    <div>
+                                        <p className="">24.5k</p>
+                                        <p className="text-xs text-gray-500">Total Reach</p>
+                                    </div>
+                                    <div>
+                                        <p className="">8.2%</p>
+                                        <p className="text-xs text-gray-500">Engagement</p>
+                                    </div>
+                                    <div>
+                                        <p className="">1.2K</p>
+                                        <p className="text-xs text-gray-500">New Followers</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Facebook Card */}
+                            <div className="bg-white rounded-xl border p-5 space-y-4">
+                                <div className="flex justify-between items-start">
+                                    <div className="flex gap-4">
+                                        <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mt-2">
+                                            <FaFacebookF className="text-blue-600 w-6 h-6" />
+                                        </div>
+
+                                        <div>
+                                            <div className="flex items-center gap-2">
+                                                <h4 className=" text-gray-900">
+                                                    Facebook
+                                                </h4>
+                                                <span className="flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+                                                    <FaCheckCircle className="w-3 h-3" />
+                                                    Connected
+                                                </span>
+                                            </div>
+
+                                            <p className="text-sm text-gray-600">
+                                                Your Business Page
+                                            </p>
+                                            <p className="text-xs text-gray-400">
+                                                Last synced: 5 mins ago
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex gap-2">
+                                        <button className="flex items-center gap-1 px-3 py-1.5 text-sm border rounded-lg bg-white text-black">
+
+                                            Refresh
+                                        </button>
+                                        <button className="px-3 py-1.5 text-sm border border-red-500 text-red-500 rounded-lg bg-white">
+                                            Disconnect
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div className="grid grid-cols-4 text-center">
+                                    <div>
+                                        <p className="">142</p>
+                                        <p className="text-xs text-gray-500">Posts Published</p>
+                                    </div>
+                                    <div>
+                                        <p className="">24.5k</p>
+                                        <p className="text-xs text-gray-500">Total Reach</p>
+                                    </div>
+                                    <div>
+                                        <p className="">8.2%</p>
+                                        <p className="text-xs text-gray-500">Engagement</p>
+                                    </div>
+                                    <div>
+                                        <p className="">1.2K</p>
+                                        <p className="text-xs text-gray-500">New Followers</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    )}
+                    {activeTab === "Subscription & Billing" && (
+                        <div className="p-10 bg-gray-50">
+
+                            {/* Title */}
+                            <div className="text-center mb-10">
+                                <h2 className="text-3xl">
+                                    Subscription & Billing
+                                </h2>
+                                <p className="text-gray-500 mt-2">
+                                    Manage your plan and payment information
+                                </p>
+                            </div>
+
+                            {/* Current Plan Card */}
+                            <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 text-white shadow-xl mb-12 flex justify-between items-center">
+
+                                {/* Left Content */}
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-3">
+                                        <StarIcon className="w-6 h-6 text-white" />
+                                        <h3 className="text-xl font-medium">
+                                            Current Plan: Professional
+                                        </h3>
+                                    </div>
+
+                                    <p className="text-white/80 text-sm">
+                                        Your subscription renews on December 15, 2025
+                                    </p>
+
+                                    <div className="flex gap-12 mt-4">
+                                        <div>
+                                            <p className="text-sm text-white/80">
+                                                Posts this month
+                                            </p>
+                                            <p className="text-2xl">
+                                                127
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm text-white/80">
+                                                Connected accounts
+                                            </p>
+                                            <p className="text-2xl">
+                                                3
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Right Button */}
+                                <button className="bg-white text-purple-600 px-6 py-3 rounded-xl font-medium shadow">
+                                    Manage Billing
+                                </button>
+                            </div>
+
+                            {/* Toggle */}
+                            <div className="flex items-center justify-between bg-gray-100 rounded-full px-4 py-2 max-w-xs mx-auto mb-12">
+                                <div
+                                    className="relative w-36 h-10 bg-white rounded-full shadow-inner cursor-pointer"
+                                    onClick={() =>
+                                        setBillingCycle(billingCycle === "monthly" ? "yearly" : "monthly")
+                                    }
+                                >
+                                    <div
+                                        className={`absolute top-1 left-1 w-16 h-8 bg-white rounded-full shadow transition-transform flex items-center justify-center text-black font-medium text-sm ${billingCycle === "yearly" ? "translate-x-16" : ""
+                                            }`}
+                                    >
+                                        {billingCycle === "monthly" ? "Monthly" : "Yearly"}
+                                    </div>
+                                </div>
+
+                                <span className="ml-4 px-3 py-1 text-green-700 text-sm font-semibold bg-green-100 rounded-full">
+                                    Save 20%
+                                </span>
+                            </div>
+
+                            {/* Pricing Cards */}
+                            <div className="grid md:grid-cols-2 gap-10">
+
+                                {/* Starter Plan */}
+                                <div className="bg-white border border-gray-200 rounded-3xl p-10 text-left shadow-sm">
+
+                                    <h3 className="text-2xl mb-1">Starter</h3>
+                                    <p className="text-gray-500 mb-6">
+                                        For Individual & Freelancer
+                                    </p>
+
+                                    <div className="mb-6">
+                                        <div className="text-4xl">
+                                            ₹899
+                                            <span className="text-base text-gray-500">/month</span>
+                                        </div>
+                                        <div className="text-sm text-gray-500">
+                                            $11 USD / month
+                                        </div>
+                                    </div>
+
+                                    <div className="flex justify-center mb-8">
+                                        <Link
+                                            href="/signup"
+                                            className="w-full px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center"
+                                        >
+                                            Get Started
+                                        </Link>
+                                    </div>
+
+                                    <ul className="space-y-4">
+                                        {[
+                                            "365 AI-generated posts",
+                                            "Images, reels & festivals",
+                                            "Auto scheduling",
+                                            "Basic branding",
+                                        ].map((item) => (
+                                            <li key={item} className="flex items-center gap-3 text-gray-700">
+                                                <span className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center text-white text-xs">
+                                                    ✓
+                                                </span>
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                {/* Growth Plan */}
+                                <div className="relative bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl p-10 text-left shadow-xl">
+
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                                        <span className="px-4 py-1 rounded-full bg-yellow-400 text-black text-xs">
+                                            Most Popular
+                                        </span>
+                                    </div>
+
+                                    <h3 className="text-2xl text-white mb-1">
+                                        Growth
+                                    </h3>
+                                    <p className="text-white/80 mb-6">
+                                        For Small Business
+                                    </p>
+
+                                    <div className="mb-6">
+                                        <div className="text-4xl text-white">
+                                            ₹1,499
+                                            <span className="text-base text-white/80">/month</span>
+                                        </div>
+                                        <div className="text-sm text-white/80">
+                                            $18 USD / month
+                                        </div>
+                                    </div>
+
+                                    <div className="flex justify-center mb-8">
+                                        <Link
+                                            href="/signup"
+                                            className="w-full px-8 py-3 rounded-full bg-white text-blue-600 text-center"
+                                        >
+                                            Get Started
+                                        </Link>
+                                    </div>
+
+                                    <ul className="space-y-4">
+                                        {[
+                                            "Unlimited content generation",
+                                            "Advanced branding",
+                                            "Multi-platform scheduling",
+                                            "Priority support",
+                                        ].map((item) => (
+                                            <li key={item} className="flex items-center gap-3 text-white">
+                                                <span className="w-5 h-5 rounded-full bg-yellow-400 flex items-center justify-center text-black text-xs">
+                                                    ✓
+                                                </span>
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
                             </div>
                         </div>
                     )}
