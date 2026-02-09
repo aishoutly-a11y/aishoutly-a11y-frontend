@@ -276,10 +276,10 @@ export default function DashboardPage() {
                                                 />
                                             </div>
 
-                                            <div className="grid grid-cols-3 text-center">
+                                            <div className="grid grid-cols-3 text-left">
                                                 <div>
                                                     {/* Icon + Title */}
-                                                    <div className="flex items-center justify-center gap-2 mb-1">
+                                                    <div className="flex items-start justify-start gap-2 mb-1">
                                                         <ArrowTrendingUpIcon className="w-5 h-5 text-gray-600" />
                                                         <p className="text-gray-500">Engagement Rate</p>
                                                     </div>
@@ -290,7 +290,7 @@ export default function DashboardPage() {
 
                                                 <div>
                                                     {/* Icon + Title */}
-                                                    <div className="flex items-center justify-center gap-2 mb-1">
+                                                    <div className="flex items-start justify-start gap-2 mb-1">
                                                         <ChartBarIcon className="w-5 h-5 text-gray-600" />
                                                         <p className="text-gray-500">Total Reach</p>
                                                     </div>
@@ -301,7 +301,7 @@ export default function DashboardPage() {
 
                                                 <div>
                                                     {/* Icon + Title */}
-                                                    <div className="flex items-center justify-center gap-2 mb-1">
+                                                    <div className="flex items-start justify-start gap-2 mb-1">
                                                         <CursorArrowRaysIcon className="w-5 h-5 text-gray-600" />
                                                         <p className="text-gray-500">Posts Published</p>
                                                     </div>
@@ -334,18 +334,30 @@ export default function DashboardPage() {
                                                 </div>
                                             ))}
                                         </div>
-
                                         <div className="bg-white p-4 rounded-xl shadow">
                                             <h4 className="mb-3">Upcoming posts</h4>
                                             {[1, 2, 3].map((i) => (
-                                                <div key={i} className="border rounded-lg p-3 mb-2">
-                                                    <p className="">Holiday Special</p>
-                                                    <p className="text-sm text-gray-500">
-                                                        Tomorrow 10:00 AM
-                                                    </p>
+                                                <div key={i} className="border rounded-lg p-3 mb-2 flex flex-col gap-1">
+
+                                                    {/* Title with image */}
+                                                    <div className="flex items-center gap-2">
+                                                        <img
+                                                            src="/images/holiday1.jpg" // replace with your image path
+                                                            alt="Holiday"
+                                                            className="w-5 h-5"
+                                                        />
+                                                        <p className="font-medium">Holiday Special</p>
+                                                    </div>
+
+                                                    {/* Time with image */}
+                                                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                                                        <p>Tomorrow 10:00 AM</p>
+                                                    </div>
+
                                                 </div>
                                             ))}
                                         </div>
+
                                     </div>
 
                                 </div>

@@ -52,9 +52,9 @@ export default function BrandSetupPage() {
                     <span className={step === 1 ? "text-black font-medium font-arial" : ""}>
                         Brand Info
                     </span>
-                    <span className={step === 2 ? "text-black font-medium font-arial" : ""}>
+                    {/* <span className={step === 2 ? "text-black font-medium font-arial" : ""}>
                         Brand Colors
-                    </span>
+                    </span>*/}
                     <span className="font-arial">Connect Accounts</span>
                 </div>
                 <div className="w-full h-2 bg-gray-200 rounded-full">
@@ -127,7 +127,7 @@ export default function BrandSetupPage() {
                         </div>
 
                         <button
-                            onClick={() => setStep(2)}
+                            onClick={() => setStep(3)}
                             className="w-full h-12 bg-[#000000] text-white rounded-xl hover:opacity-90 transition font-arial"
                         >
                             Continue
@@ -136,7 +136,7 @@ export default function BrandSetupPage() {
                 )}
 
                 {/* ================= STEP 2 ================= */}
-                {step === 2 && (
+                {/*    {step === 2 && (
                     <>
                         <h2 className="text-lg font-medium text-black mb-1 font-arial">
                             Choose Your Brand Colors
@@ -146,10 +146,8 @@ export default function BrandSetupPage() {
                             These will be used for post overlays and backgrounds
                         </p>
 
-                        {/* Color Inputs */}
                         <div className="flex flex-col sm:grid sm:grid-cols-2 gap-5 mb-6">
 
-                            {/* Primary Color */}
                             <div className="w-full">
                                 <label className="flex items-center gap-2 text-sm text-gray-700 mb-2 font-arial">
                                     <Palette size={16} />
@@ -157,10 +155,10 @@ export default function BrandSetupPage() {
                                 </label>
 
                                 <div className="flex items-center gap-3">
-                                    {/* Color Preview Box */}
+                                    
                                     <div className="w-12 h-10 rounded-md bg-blue-500 border" />
 
-                                    {/* Color Input */}
+                                    
                                     <input
                                         type="text"
                                         placeholder="#8B5CF6"
@@ -168,8 +166,6 @@ export default function BrandSetupPage() {
                                     />
                                 </div>
                             </div>
-
-                            {/* Secondary Color */}
                             <div className="w-full">
                                 <label className="flex items-center gap-2 text-sm text-gray-700 mb-2 font-arial">
                                     <Palette size={16} />
@@ -177,10 +173,7 @@ export default function BrandSetupPage() {
                                 </label>
 
                                 <div className="flex items-center gap-3">
-                                    {/* Color Preview Box */}
                                     <div className="w-12 h-10 rounded-md bg-purple-500 border" />
-
-                                    {/* Color Input */}
                                     <input
                                         type="text"
                                         placeholder="#EC4899"
@@ -189,16 +182,12 @@ export default function BrandSetupPage() {
                                 </div>
                             </div>
                         </div>
-
-                        {/* Gradient Preview */}
                         <div className="mb-6 rounded-xl h-36 bg-gradient-to-r from-purple-500 to-pink-500 flex flex-col items-center justify-center text-white">
                             <span className="text-xs opacity-80 font-arial">Preview</span>
                             <span className="text-lg font-medium font-arial">
                                 Your Brand Color
                             </span>
                         </div>
-
-                        {/* Buttons */}
                         <div className="flex gap-3">
                             <button
                                 onClick={() => setStep(1)}
@@ -215,7 +204,7 @@ export default function BrandSetupPage() {
 
                         </div>
                     </>
-                )}
+                )} */}
                 {/* ================= STEP 3 ================= */}
                 {step === 3 && (
                     <>
