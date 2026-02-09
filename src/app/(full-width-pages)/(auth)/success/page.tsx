@@ -1,62 +1,81 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import ShoutlyLogo from "@/components/common/ShoutlyLogo";
-import AuthBackground from "@/components/auth/AuthBackground";
+import Image from "next/image";
 
 export default function SuccessPage() {
     const router = useRouter();
     const [isResetFlow, setIsResetFlow] = useState(false);
 
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            const params = new URLSearchParams(window.location.search);
-            setIsResetFlow(params.get("type") === "reset");
-        }
+        const params = new URLSearchParams(window.location.search);
+        setIsResetFlow(params.get("type") === "reset");
     }, []);
 
     return (
-        <div className="relative min-h-screen flex items-center justify-center p-6 sm:p-10 overflow-hidden">
-            <AuthBackground />
+        <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
 
-            <div className="w-full max-w-[480px] z-10 flex flex-col items-center">
-                {/* Logo */}
-                <div className="mb-12">
-                    <Link href="/">
-                        <ShoutlyLogo />
-                    </Link>
-                </div>
+            {/* Logo */}
+            <div className="mb-6">
+                <Image
+                    src="/images/logo.png"
+                    alt="Logo"
+                    width={180}
+                    height={120}
+                    priority
+                    className="mx-auto"
+                />
+            </div>
 
-                {/* Success Content */}
-                <div className="flex flex-col items-center text-center">
-                    <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-8 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100">
-                        <div className="w-16 h-16 rounded-full border-2 border-gray-900 flex items-center justify-center">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </div>
-                    </div>
+            {/* Card */}
+            <div className="w-full max-w-md bg-white border border-gray-200 rounded-2xl shadow-lg p-8 text-center">
 
-                    <h1 className="text-[40px] font-bold text-gray-900 mb-4">
-                        Successfully
-                    </h1>
-                    <p className="text-gray-500 text-sm mb-10 max-w-[300px]">
-                        {isResetFlow
-                            ? "Your password has been reset successfully"
-                            : "Your account has been created successfully"}
-                    </p>
-
-                    <button
-                        onClick={() => router.push("/dashboard")}
-                        className="w-full max-w-[320px] h-14 bg-black text-white rounded-xl font-bold text-base hover:bg-gray-800 transition-all shadow-lg shadow-black/10"
+                {/* Success Icon */}
+                <div className="mx-auto mb-6 w-20 h-20 rounded-full border-5 border-gray-300 flex items-center justify-center">
+                    <svg
+                        width="36"
+                        height="36"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="text-black"
                     >
-                        CONTINUE
-                    </button>
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
                 </div>
+
+                {/* Title */}
+                <h1
+                    className="text-2xl text-[#000000] mb-2"
+                    style={{ fontFamily: "Arial", fontWeight: 500 }}
+                >
+                    Successfully
+                </h1>
+
+                {/* Message */}
+                <p
+                    className="text-gray-600 mb-6"
+                    style={{ fontFamily: "Arial", fontWeight: 100, fontSize: "13px", paddingBottom: "10px" }}
+                >
+                    {isResetFlow
+                        ? "Your password has been reset successfully."
+                        : "Your account has been created successfully."}
+                </p>
+
+                {/* Continue Button */}
+                <button
+                    onClick={() => router.push("/sign-in")}
+                    className="w-full h-12 bg-[#000000] text-white hover:opacity-90 transition"
+                    style={{ fontFamily: "Arial", fontWeight: 400 }}
+                >
+                    Continue
+                </button>
+
             </div>
         </div>
     );
 }
-

@@ -23,6 +23,11 @@ import {
     ArrowUpTrayIcon, PencilIcon, EyeIcon, TrashIcon, PlusIcon,
     MagnifyingGlassIcon,
     FunnelIcon,
+    GlobeAltIcon,
+    CheckIcon,
+    LockClosedIcon,
+    UserIcon,
+    EnvelopeIcon, LinkIcon,
 
 } from "@heroicons/react/24/outline";
 import {
@@ -1218,6 +1223,240 @@ export default function DashboardPage() {
                                 </div>
 
                             </div>
+                        </div>
+                    )}
+                    {activeTab === "Settings" && (
+                        <div className="p-6 bg-gray-50 space-y-8">
+
+                            {/* Page Title */}
+                            <div>
+                                <h2 className="text-2xl text-black">Account Settings</h2>
+                                <p className="text-gray-500">
+                                    Manage your profile and connected social accounts
+                                </p>
+                            </div>
+
+                            {/* Profile Information */}
+                            <div className="bg-white rounded-xl shadow p-6">
+                                <div className="flex items-center gap-2 mb-6">
+                                    <UserIcon className="w-5 h-5 text-black" />
+                                    <h3 className="text-lg">Profile Information</h3>
+                                </div>
+
+                                {/* Profile Photo */}
+                                <div className="flex items-center gap-6 mb-6">
+                                    <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center text-white text-xl">
+                                        JD
+                                    </div>
+                                    <div>
+                                        <button className="px-4 py-2 border rounded-lg bg-white text-black">
+                                            Change Photo
+                                        </button>
+                                        <p className="text-xs text-gray-500 mt-1">
+                                            JPG, PNG or GIF Max 5MB
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Inputs */}
+                                <div className="grid grid-cols-2 gap-6 mb-4">
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <UserIcon className="w-4 h-4" />
+                                            <label>Full Name</label>
+                                        </div>
+                                        <input
+                                            placeholder="John Doe"
+                                            className="w-full border rounded-lg px-3 py-2"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <EnvelopeIcon className="w-4 h-4" />
+                                            <label>Email Address</label>
+                                        </div>
+                                        <input
+                                            placeholder="john@example.com"
+                                            className="w-full border rounded-lg px-3 py-2"
+                                        />
+                                    </div>
+                                </div>
+
+                                <button className="bg-black text-white px-6 py-2 rounded-lg">
+                                    Save Changes
+                                </button>
+                            </div>
+
+                            {/* Password & Security */}
+                            <div className="bg-white rounded-xl shadow p-6">
+                                <div className="flex items-center gap-2 mb-6">
+                                    <LockClosedIcon className="w-5 h-5" />
+                                    <h3 className="text-lg">Password & Security</h3>
+                                </div>
+
+                                <div className="mb-4">
+                                    <label>Current Password</label>
+                                    <input
+                                        type="password"
+                                        placeholder="••••••••"
+                                        className="w-full border rounded-lg px-3 py-2 mt-1"
+                                    />
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-6 mb-4">
+                                    <div>
+                                        <label>New Password</label>
+                                        <input
+                                            type="password"
+                                            placeholder="••••••••"
+                                            className="w-full border rounded-lg px-3 py-2 mt-1"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label>Confirm Password</label>
+                                        <input
+                                            type="password"
+                                            placeholder="••••••••"
+                                            className="w-full border rounded-lg px-3 py-2 mt-1"
+                                        />
+                                    </div>
+                                </div>
+
+                                <button className="bg-black text-white px-6 py-2 rounded-lg">
+                                    Update Password
+                                </button>
+                            </div>
+                            {/* Connected Social Accounts */}
+                            <div className="bg-white rounded-xl shadow p-6 space-y-4">
+
+                                <div className="flex items-center gap-2 mb-4">
+                                    <GlobeAltIcon className="w-5 h-5 text-black" />
+                                    <h3 className="text-lg">Connected Social Accounts</h3>
+                                </div>
+
+                                {[
+                                    { name: "Instagram", icon: FaInstagram },
+                                    { name: "Facebook", icon: FaFacebook },
+                                    { name: "LinkedIn", icon: FaLinkedin },
+                                    { name: "YouTube", icon: FaYoutube },
+                                ].map(({ name, icon: Icon }) => (
+                                    <div
+                                        key={name}
+                                        className="flex justify-between items-center border rounded-lg p-4"
+                                    >
+                                        {/* Left */}
+                                        <div className="flex items-center gap-3">
+                                            <Icon className="w-5 h-5 text-black" />
+                                            <div>
+                                                <p className="text-black">{name}</p>
+                                                <p className="text-sm text-gray-500">@yourcompany</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Right */}
+                                        <div className="flex gap-3">
+                                            <span className="flex items-center gap-1 text-green-600">
+                                                <CheckIcon className="w-4 h-4" />
+                                                Connected
+                                            </span>
+                                            <button className="border border-red-500 text-red-500 px-3 py-1 rounded-lg">
+                                                Disconnect
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+
+                                {/* Twitter */}
+                                <div className="flex justify-between items-center border rounded-lg p-4">
+                                    <div className="flex items-center gap-3">
+                                        <FaTwitter className="w-5 h-5 text-black" />
+                                        <div>
+                                            <p className="text-black">X (Twitter)</p>
+                                            <p className="text-sm text-gray-500">@yourcompany</p>
+                                        </div>
+                                    </div>
+
+                                    <button className="flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg">
+                                        <LinkIcon className="w-4 h-4" />
+                                        Connect
+                                    </button>
+                                </div>
+
+                                {/* Info Box */}
+                                <div className="bg-blue-50 text-blue-600 p-4 rounded-lg text-sm">
+                                    Connect all your social accounts to enable cross-platform posting and scheduling
+                                </div>
+
+                            </div>
+                            {/* Notifications */}
+                            <div className="bg-white rounded-xl shadow p-6 space-y-4">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <BellIcon className="w-5 h-5" />
+                                    <h3 className="text-lg">Notification Preference</h3>
+                                </div>
+
+                                {[
+                                    {
+                                        title: "Email Notification",
+                                        text: "Receive updates via email",
+                                        on: true,
+                                    },
+                                    {
+                                        title: "Push Notification",
+                                        text: "Get notified in your browser",
+                                        on: false,
+                                    },
+                                    {
+                                        title: "Weekly Summary",
+                                        text: "Get weekly performance reports",
+                                        on: false,
+                                    },
+                                ].map(({ title, text, on }) => (
+                                    <div
+                                        key={title}
+                                        className="flex justify-between items-center bg-gray-100 rounded-lg p-4"
+                                    >
+                                        {/* Text */}
+                                        <div>
+                                            <p className="font-medium">{title}</p>
+                                            <p className="text-sm text-gray-500">{text}</p>
+                                        </div>
+
+                                        {/* Toggle */}
+                                        <div
+                                            className={`w-12 h-6 flex items-center rounded-full px-1 transition-colors duration-300 ${on ? "bg-blue-500" : "bg-gray-400"
+                                                }`}
+                                        >
+                                            <div
+                                                className={`w-4 h-4 bg-white rounded-full shadow transform transition-transform duration-300 ${on ? "translate-x-6" : "translate-x-0"
+                                                    }`}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Danger Zone */}
+                            <div className="border border-red-200 rounded-xl p-6 bg-white">
+                                <h2 className="text-red-600 mb-2 text-2xl">Danger Zone</h2>
+
+                                {/* Highlighted danger content */}
+                                <div className="flex justify-between items-center bg-red-50 p-4 rounded-lg">
+                                    <div>
+                                        <p className="text-black font-medium">Delete Account</p>
+                                        <p className="text-sm text-gray-500">
+                                            Permanently delete your account and all data
+                                        </p>
+                                    </div>
+
+                                    <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+
+
                         </div>
                     )}
 
