@@ -728,7 +728,7 @@ export default function LandingPage() {
                 </div>
             </section>
             {/* Footer */}
-            <footer className="bg-white dark:bg-gray-900 py-20 border-t border-gray-100 dark:border-gray-800">
+            <footer className="bg-white dark:bg-[#000000] py-20 border-t border-gray-100 dark:border-gray-800">
                 <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-12">
 
                     {/* Brand + Social */}
@@ -752,7 +752,7 @@ export default function LandingPage() {
                             {[FaTwitter, FaInstagram, FaLinkedinIn, FaFacebookF, FaYoutube].map((Icon, i) => (
                                 <div
                                     key={i}
-                                    className="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center justify-center text-gray-600 hover:bg-brand-500 hover:text-white transition-all cursor-pointer"
+                                    className="w-10 h-10 rounded-full border border-white dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center justify-center text-white hover:bg-brand-500 hover:text-white transition-all cursor-pointer"
                                 >
                                     <Icon className="w-5 h-5" />
                                 </div>
