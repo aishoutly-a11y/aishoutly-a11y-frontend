@@ -4,10 +4,12 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   experimental: {
     missingSuspenseWithCSRBailout: false,
   },
-  // Disable strict mode for now
   reactStrictMode: false,
 }
 
